@@ -91,7 +91,9 @@ const IntroActivity = () => {
     }
 
     function animate(deltaTime: number) {
-      ctx?.clearRect(0, 0, canvas.width, canvas.height)
+      if (canvas) {
+        ctx?.clearRect(0, 0, canvas.width, canvas.height)
+      }
 
       initParticles(deltaTime)
 
