@@ -1,10 +1,16 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-const IntroActivity = () => {
+const IntroActivity = ({
+  setSection,
+}: {
+  setSection: React.Dispatch<React.SetStateAction<number>>
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isCircleComplete, setIsCircleComplete] = useState(false)
+  const [particleSpeed, setParticleSpeed] = useState(10)
+  const [particleSize, setParticleSize] = useState(2)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -13,22 +19,32 @@ const IntroActivity = () => {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    const updateScreenState = () => {
+      const width = window.innerWidth
+
+      if (width <= 768) {
+        setParticleSpeed(1)
+        setParticleSize(1)
+      } else {
+        setParticleSpeed(4)
+        setParticleSize(2)
+      }
+
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
+
+    updateScreenState()
+    window.addEventListener('resize', updateScreenState)
 
     const particles: Particle[] = []
     const particleCount = 360
-    const animationDuration = 3000
+    const animationDuration = 2000
     const radius = canvas.width / 4
     const centerX = canvas.width / 2
     const centerY = canvas.height / 2
     const timeElapsed = 0
     let hasCompletedCircle = false
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    })
 
     class Particle {
       x: number
@@ -41,9 +57,9 @@ const IntroActivity = () => {
       constructor(x: number, y: number) {
         this.x = x
         this.y = y
-        this.radius = Math.random() * 2 + 1
-        this.speedX = (Math.random() - 0.5) * 4
-        this.speedY = (Math.random() - 0.5) * 4
+        this.radius = Math.random() * particleSize + 1
+        this.speedX = (Math.random() - 0.5) * particleSpeed
+        this.speedY = (Math.random() - 0.5) * particleSpeed
         this.opacity = 1
       }
 
@@ -66,27 +82,31 @@ const IntroActivity = () => {
     function initParticles(deltaTime: number) {
       if (hasCompletedCircle) return
 
-      const angleStep = (Math.PI * 2) / particleCount // 입자 간격 (360도 기준)
-      const progress = (deltaTime / animationDuration) * particleCount // 현재 진행도
+      const angleStep = (Math.PI * 2) / particleCount
+      const progress = (deltaTime / animationDuration) * particleCount
 
       for (let i = 0; i < progress; i++) {
         const angle = i * angleStep - Math.PI / 2
         const x = centerX + Math.cos(angle) * radius
         const y = centerY + Math.sin(angle) * radius
 
-        // 중복 방지
         if (!particles.some((p) => p.x === x && p.y === y)) {
           particles.push(new Particle(x, y))
         }
       }
       if (progress >= particleCount) {
         hasCompletedCircle = true
-        setIsCircleComplete(true) // 글자 확대 상태 업데이트
+        setIsCircleComplete(true)
 
         particles.forEach((particle) => {
-          particle.speedX = (Math.random() - 0.5) * 10
-          particle.speedY = (Math.random() - 0.5) * 10
+          particle.speedX = (Math.random() - 0.5) * particleSpeed
+          particle.speedY = (Math.random() - 0.5) * particleSpeed
         })
+
+        // 애니메이션 종료 후 3초 후에 페이지를 전환
+        setTimeout(() => {
+          setSection(1)
+        }, 3000)
       }
     }
 
@@ -110,29 +130,26 @@ const IntroActivity = () => {
         requestAnimationFrame((time) => animate(time))
       } else {
         particles.forEach((particle) => {
-          particle.speedX = (Math.random() - 0.5) * 10
-          particle.speedY = (Math.random() - 0.5) * 10
+          particle.speedX = (Math.random() - 0.5) * particleSpeed
+          particle.speedY = (Math.random() - 0.5) * particleSpeed
         })
-        requestAnimationFrame(() => animate(deltaTime + 1)) // 퍼지는 애니메이션 유지
+        requestAnimationFrame(() => animate(deltaTime + 1))
       }
     }
 
     requestAnimationFrame((time) => animate(time - timeElapsed))
 
     return () => {
-      window.removeEventListener('resize', () => {
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
-      })
+      window.removeEventListener('resize', updateScreenState)
     }
-  }, [])
+  }, [particleSpeed, particleSize, setSection])
 
   return (
-    <div className="relative w-full h-screen bg-black">
+    <div className="relative w-full h-screen">
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
       <div className="flex items-center justify-center h-full">
         <h1
-          className={`text-6xl font-bold text-white transition-transform duration-500 ${
+          className={`lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold text-white transition-transform duration-500 ${
             isCircleComplete ? 'scale-150' : ''
           }`}
         >
