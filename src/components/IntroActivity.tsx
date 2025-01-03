@@ -106,7 +106,7 @@ const IntroActivity = ({
         // 애니메이션 종료 후 3초 후에 페이지를 전환
         setTimeout(() => {
           setSection(1)
-        }, 3000)
+        }, 1000)
       }
     }
 
