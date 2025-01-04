@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  scroll-behavior: smooth;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,4 +34,11 @@ body {
   .writingMode-horizontal-tb {
     writing-mode: horizontal-tb;
   }
+}
+@font-face {
+  font-family: 'Toss';
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('/fonts/Toss.ttf') format('truetype');
 }
