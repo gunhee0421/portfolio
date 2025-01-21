@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { ChevronsDown } from 'lucide-react'
 import styles from '@/css/IntroSection.module.css'

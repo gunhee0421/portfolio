@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 
 export const AboutSection = () => {
@@ -7,7 +9,7 @@ export const AboutSection = () => {
     <section id="about" className="h-screen py-60">
       <div className="flex flex-row justify-between h-full">
         <div className="w-[40%] relative group">
-          <h1 className="pb-10">
+          <h1 className="pb-20">
             <a
               href="#about"
               className="text-garyFont text-4xl font-bold hover:text-primary transition-colors duration-500"
@@ -15,37 +17,25 @@ export const AboutSection = () => {
               <span className="text-primary">01. </span>About
             </a>
           </h1>
-          <div className={`transition-opacity duration-700`}>
+          <div className={`transition-opacity duration-700 w-full h-full`}>
             {visible === 1 && (
               <iframe
                 src="https://giphy.com/embed/SOb4AcaDitenU4XKdC"
-                width="480"
-                height="480"
-                className={`giphy-embed ${visible === 1 ? 'opacity-1' : 'opacity-0'}`}
+                className={`w-full h-[70%] giphy-embed ${visible === 1 ? 'opacity-1' : 'opacity-0'}`}
                 allowFullScreen
               ></iframe>
             )}
             {visible === 2 && (
-              <div>
-                <iframe
-                  src="https://giphy.com/embed/He4wudo59enf2"
-                  width="480"
-                  height="360"
-                  frameBorder="0"
-                  className="giphy-embed"
-                  allowFullScreen
-                ></iframe>
-                <p>
-                  <a href="https://giphy.com/gifs/satisfying-He4wudo59enf2">
-                    via GIPHY
-                  </a>
-                </p>
-              </div>
+              <iframe
+                src="https://giphy.com/embed/He4wudo59enf2"
+                className={`w-full h-[70%] giphy-embed ${visible === 2 ? 'opacity-1' : 'opacity-0'}`}
+                allowFullScreen
+              ></iframe>
             )}
           </div>
         </div>
         <div
-          className={`w-[60%] text-white text-4xl flex flex-col items-center justify-center transition-all duration-500 ${
+          className={`w-[60%] text-4xl flex flex-col items-center justify-center transition-all duration-500 ${
             visible > 0 ? 'text-[#696969]' : 'text-white'
           }`}
         >
@@ -73,7 +63,7 @@ export const AboutSection = () => {
           >
             <strong
               className={`relative inline-block font-bold border-b border-gray-500 before:absolute before:left-0 before:bottom-0 before:h-[1px] before:w-0 before:bg-white before:origin-left before:transition-all before:duration-500 hover:before:w-full ${
-                visible === 1 && 'text-white'
+                visible === 2 && 'text-white'
               }`}
               onMouseEnter={() => setVisible(2)}
               onMouseLeave={() => setVisible(0)}
@@ -89,3 +79,5 @@ export const AboutSection = () => {
     </section>
   )
 }
+
+export default AboutSection
