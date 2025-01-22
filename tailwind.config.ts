@@ -9,7 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        toss: ['Toss', 'sans-serif'],
+        toss: ['Toss'],
+        notoSans: ['Noto Sans'],
       },
       colors: {
         background: 'var(--background)',

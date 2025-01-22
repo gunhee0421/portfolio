@@ -67,12 +67,12 @@ const IntroSection = () => {
 
   return (
     <section className="w-full h-screen flex flex-col items-center justify-center">
-      <h1 className="text-white text-6xl font-bold mb-5 text-center font-toss">
+      <h1 className="text-white sm:text-2xl md:text-4xl lg:text-6xl font-bold mb-5 text-center font-toss">
         {getLinesWithEffect(displayText)}
       </h1>
       <button
         onClick={startTyping}
-        className={`absolute bottom-[35vh] px-6 py-3 bg-zinc-50 text-black hover:bg-primary font-bold rounded-lg hover:bg-primary-dark transition duration-300 animate-blink ${
+        className={`text-[8px] sm:text-sm md:text-lg px-2 py-1 rounded-sm lg:px-6 lg:py-3 bg-zinc-50 text-black hover:bg-primary font-bold lg:rounded-lg hover:bg-primary-dark transition duration-300 animate-blink ${
           showRestartButton ? 'block' : 'hidden'
         }`}
       >
@@ -82,7 +82,22 @@ const IntroSection = () => {
         href="#about"
         className={`${showRestartButton ? 'block' : 'hidden'} absolute bottom-[10vh]`}
       >
-        <ChevronsDown size={80} className="text-white animate-bounce" />
+        <ChevronsDown
+          size={80}
+          className="text-white animate-bounce hidden lg:block"
+        />
+        <ChevronsDown
+          size={25}
+          className="text-white animate-bounce sm:hidden"
+        />
+        <ChevronsDown
+          size={40}
+          className="text-white animate-bounce hidden sm:block md:hidden"
+        />
+        <ChevronsDown
+          size={60}
+          className="text-white animate-bounce hidden md:block lg:hidden"
+        />
       </a>
     </section>
   )

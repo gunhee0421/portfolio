@@ -10,7 +10,9 @@ const SkillComponent: React.FC<{
   className?: string
 }> = ({ image, title, percent, className }) => {
   return (
-    <li className={`flex flex-row items-center space-x-4 ${className}`}>
+    <li
+      className={`flex flex-row items-center space-x-4 font-notoSans ${className}`}
+    >
       <div className="flex flex-col items-center mr-6">
         <Image
           src={`/images/skill/${image}.png`}
@@ -18,7 +20,7 @@ const SkillComponent: React.FC<{
           height={100}
           alt={`${title} image`}
         />
-        <span className="mt-4 font-toss font-bold text-center">{title}</span>
+        <span className="mt-4 font-bold text-center">{title}</span>
       </div>
 
       <div className="relative w-60 h-8 bg-gray-800 shadow-md border-2 border-gray-700 overflow-hidden">
