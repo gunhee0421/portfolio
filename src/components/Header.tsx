@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <div className="flex flex-row min-w-full justify-between backdrop-blur-md items-center lg:pt-5">
       <div className="hover:cursor-pointer">
-        <a>
+        <a href="">
           <div className="sm:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,8 +55,8 @@ export const Header = () => {
           <div className="lg:block hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="200"
-              height="100"
+              width="100"
+              height="50"
               viewBox="0 0 200 100"
               fill="none"
             >
@@ -97,7 +97,7 @@ export const Header = () => {
                   href="#about"
                   className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
                 >
-                  <span className="text-black">02. </span>Skills
+                  <span className="text-black">02. </span>Skill
                 </a>
               </li>
               <li className="w-[20dvw] h-[20dvh]">
@@ -135,7 +135,7 @@ export const Header = () => {
           />
         )}
       </div>
-      <nav className="hidden lg:block">
+      <nav className="hidden lg:block pr-8">
         <ul className="flex flex-row gap-5 pr-8 font-bold lg:text-xl">
           <li>
             <a

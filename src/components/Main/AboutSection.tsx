@@ -12,7 +12,7 @@ const WebDesign: React.FC<{
         <h1 className="md:pb-6 xl:pb-10 2xl:pb-20">
           <a
             href="#about"
-            className="text-garyFont md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
+            className="text-white md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
           >
             <span className="text-primary">01. </span>About
           </a>
@@ -90,7 +90,7 @@ const MobileDesign: React.FC<{
       <h1 className="md:pb-6 xl:pb-10 2xl:pb-20">
         <a
           href="#about"
-          className="text-garyFont md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
+          className="text-white md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
         >
           <span className="text-primary">01. </span>About
         </a>

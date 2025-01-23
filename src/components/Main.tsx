@@ -1,6 +1,7 @@
 import { Header } from './Header'
 import { AboutSection } from './Main/AboutSection'
 import IntroSection from './Main/IntroSection'
+import ProjectSection from './Main/ProjectSection'
 import SkillSection from './Main/SkillSection'
 import { LeftNavigation } from './navigation'
 
@@ -10,19 +11,16 @@ const Main = () => {
       <header className="fixed w-screen z-30">
         <Header />
       </header>
-      <main className="px-8 sm:px-[4rem] md:px-[4rem] lg:px-[5rem] xl:[7rem] 2xl:px-[15rem]">
-        <div className="fixed bottom-0 xl:right-8 2xl:right-20 w-fit">
-          <LeftNavigation />
-        </div>
-        <div>
+      <main>
+        <div className="px-8 sm:px-[4rem] md:px-[4rem] lg:px-[5rem] xl:[7rem] 2xl:px-[15rem] bg-bgBlack">
+          <div className="fixed right-[4dvw] bottom-0 xl:right-8 2xl:right-20 w-fit ">
+            <LeftNavigation />
+          </div>
           <IntroSection />
-        </div>
-        <div>
           <AboutSection />
-        </div>
-        <div>
           <SkillSection />
         </div>
+        <ProjectSection />
       </main>
     </div>
   )
