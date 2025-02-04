@@ -5,11 +5,17 @@ import { TitleLabel } from '../ui/Lable'
 import useModal from '@/hook/useModal'
 import ImageModal from '../ui/Modal/ImageModal'
 import { useState } from 'react'
-import Link from 'next/link'
+import NotionModal from '../ui/Modal/NotionModal'
 
 const Jinlo = () => {
   const { isOpen, openModal, closeModal } = useModal()
   const [selectedImage, setSelectedImage] = useState<string>('')
+
+  const {
+    isOpen: isOpenNotion,
+    openModal: openModalNotion,
+    closeModal: closeModalNotion,
+  } = useModal()
 
   return (
     <div className="w-full flex flex-row lg:justify-around h-[100dvh] font-toss">
@@ -122,14 +128,25 @@ const Jinlo = () => {
               현재 배포 중단됬습니다.
             </span>
           </button>
-          <Link
+          {/* <Link
             className="w-full h-12"
             href="https://jet-captain-13f.notion.site/17a3b2c548ec8031addcea0cb4537bff?pvs=74"
           >
             <button className="w-full h-full border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">
               자세히 보기
             </button>
-          </Link>
+          </Link> */}
+          <button
+            onClick={() => openModalNotion()}
+            className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black"
+          >
+            자세히 보기
+          </button>
+          <NotionModal
+            isOpen={isOpenNotion}
+            onClose={closeModalNotion}
+            notionUrl="/notions/Jinlo/찐로 17a3b2c548ec8031addcea0cb4537bff.html"
+          ></NotionModal>
         </div>
       </div>
       <div className="m-auto hidden lg:block">
