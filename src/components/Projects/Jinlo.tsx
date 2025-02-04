@@ -1,7 +1,16 @@
+'use client'
+
 import Image from 'next/image'
 import { TitleLabel } from '../ui/Lable'
+import useModal from '@/hook/useModal'
+import ImageModal from '../ui/Modal/ImageModal'
+import { useState } from 'react'
+import Link from 'next/link'
 
 const Jinlo = () => {
+  const { isOpen, openModal, closeModal } = useModal()
+  const [selectedImage, setSelectedImage] = useState<string>('')
+
   return (
     <div className="w-full flex flex-row lg:justify-around h-[100dvh] font-toss">
       <div className="flex flex-col justify-around lg:w-1/2 h-full">
@@ -41,45 +50,86 @@ const Jinlo = () => {
               서비스 입니다.
             </li>
             <li>
-              하루의 감정과 화동을 일기로 작성해 AI로 분석해 진로를 추천합니다.
+              하루의 감정과 활동을 일기로 작성해 AI로 분석해 진로를 추천합니다.
             </li>
           </ol>
         </div>
         <div>
           <TitleLabel title="주요 사진" />
           <div className="flex flex-row gap-2">
-            <Image
-              src={'/images/project/jinlo/home.png'}
-              alt="주요 사진 1"
-              width={200}
-              height={400}
-              className="w-1/3 rounded-md"
-            />
-            <Image
-              src={'/images/project/jinlo/home.png'}
-              alt="주요 사진 1"
-              width={200}
-              height={400}
-              className="w-1/3 rounded-md"
-            />
-            <Image
-              src={'/images/project/jinlo/home.png'}
-              alt="주요 사진 1"
-              width={200}
-              height={400}
-              className="w-1/3 rounded-md"
-            />
+            <div
+              onClick={() => {
+                setSelectedImage('/images/project/jinlo/home.png')
+                openModal()
+              }}
+              className="w-1/3 cursor-pointer h-full"
+            >
+              <Image
+                src={'/images/project/jinlo/home.png'}
+                alt="주요 사진 1"
+                width={200}
+                height={400}
+                className="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div
+              onClick={() => {
+                setSelectedImage('/images/project/jinlo/one.png')
+                openModal()
+              }}
+              className="w-1/3 cursor-pointer"
+            >
+              <Image
+                src={'/images/project/jinlo/one.png'}
+                alt="주요 사진 1"
+                width={200}
+                height={400}
+                className="w-full rounded-md"
+              />
+            </div>
+            <div
+              onClick={() => {
+                setSelectedImage('/images/project/jinlo/two.png')
+                openModal()
+              }}
+              className="w-1/3 cursor-pointer"
+            >
+              <Image
+                src={'/images/project/jinlo/two.png'}
+                alt="주요 사진 1"
+                width={200}
+                height={400}
+                className="w-full rounded-md"
+              />
+            </div>
           </div>
+          <ImageModal isOpen={isOpen} onClose={closeModal}>
+            <Image
+              src={selectedImage}
+              alt="선택된 이미지"
+              width={800}
+              height={1600}
+              className="w-full rounded-md"
+            />
+          </ImageModal>
         </div>
         <div className="w-full flex flex-row gap-2">
-          <a className="w-full">
-            <button className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">
+          <button className="w-full h-12 border-solid border-[1px] border-white transition-all duration-500 text-white rounded-lg hover:bg-gray-200 hover:text-black group relative">
+            <span className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-500">
               웹 사이트
-            </button>
-          </a>
-          <button className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">
-            자세히 보기
+            </span>
+            <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              현재 배포 중단됬습니다.
+            </span>
           </button>
+          <Link
+            className="w-full h-12"
+            href="https://jet-captain-13f.notion.site/17a3b2c548ec8031addcea0cb4537bff?pvs=74"
+          >
+            <button className="w-full h-full border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">
+              자세히 보기
+            </button>
+          </Link>
         </div>
       </div>
       <div className="m-auto hidden lg:block">
