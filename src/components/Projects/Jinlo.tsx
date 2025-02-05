@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { TitleLabel } from '../ui/Lable'
+import { TitleLabel, ContentLabel } from '../ui/Lable'
 import useModal from '@/hook/useModal'
 import ImageModal from '../ui/Modal/ImageModal'
 import { useState } from 'react'
@@ -20,43 +20,47 @@ const Jinlo = () => {
   return (
     <div className="w-full flex flex-row lg:justify-around h-[100dvh] font-toss">
       <div className="flex flex-col justify-around lg:w-1/2 h-full">
-        <h1 className="text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-bold">
+        <h1 className="text-lg sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-bold">
           찐로
         </h1>
         <ol className="grid grid-cols-2 gap-x-8 gap-y-6 w-full lg:flex lg:flex-row lg:justify-between pt-4">
           <li>
             <TitleLabel title="플랫폼" />
-            <p>모바일</p>
+            <ContentLabel>모바일</ContentLabel>
           </li>
           <li>
             <TitleLabel title="인원" />
-            <p>3인</p>
+            <ContentLabel>3인</ContentLabel>
           </li>
           <li>
             <TitleLabel title="기간" />
-            <p>2025.01 </p>
-            <p>~ 2025.01</p>
+            <ContentLabel>2025.01 ~ 2025.01</ContentLabel>
           </li>
           <li>
             <TitleLabel title="기여도" />
-            <p>프론트엔드 40%</p>
-            <p>백엔드 100%</p>
+            <ContentLabel>프론트엔드 40%</ContentLabel>
+            <ContentLabel>백엔드 100%</ContentLabel>
           </li>
           <li>
             <TitleLabel title="주요기술" />
-            <p>Next</p>
-            <p>Prisma</p>
+            <ContentLabel>Next.js</ContentLabel>
+            <ContentLabel>Prisma</ContentLabel>
           </li>
         </ol>
         <div>
           <TitleLabel title="소개" />
           <ol className="list-disc pl-5">
             <li>
-              20대 초반 본인의 진로에 대해서 고민하는 대학생들을 위한 진로 탐색
-              서비스 입니다.
+              <ContentLabel>
+                20대 초반 본인의 진로에 대해서 고민하는 대학생들을 위한 진로
+                탐색 서비스 입니다.
+              </ContentLabel>
             </li>
             <li>
-              하루의 감정과 활동을 일기로 작성해 AI로 분석해 진로를 추천합니다.
+              <ContentLabel>
+                하루의 감정과 활동을 일기로 작성해 AI로 분석해 진로를
+                추천합니다.
+              </ContentLabel>
             </li>
           </ol>
         </div>

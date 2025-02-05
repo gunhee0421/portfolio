@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 interface ModalProps {
   isOpen: boolean
   onClose: () => void
-  notionUrl: string // 노션 URL을 받기 위한 prop 추가
+  notionUrl: string
 }
 
 const NotionModal = ({ isOpen, onClose, notionUrl }: ModalProps) => {
