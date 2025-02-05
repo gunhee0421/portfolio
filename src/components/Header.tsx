@@ -1,10 +1,31 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AlignJustify } from 'lucide-react'
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('intro')
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['intro', 'about', 'skill', 'project']
+
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <div className="flex flex-row min-w-full justify-between backdrop-blur-md items-center lg:pt-5">
@@ -87,41 +108,82 @@ export const Header = () => {
               <li className="w-[20dvw] h-[20dvh]">
                 <a
                   href="#about"
-                  className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
+                  className={`flex justify-center h-full items-center ${
+                    activeSection === 'about' ? 'text-black' : 'text-primary'
+                  } hover:text-black transition-colors duration-500`}
                 >
-                  <span className="text-black">01. </span>About
+                  <span
+                    className={
+                      activeSection === 'project' ? 'text-white' : 'text-black'
+                    }
+                  >
+                    01.{' '}
+                  </span>
+                  About
                 </a>
               </li>
               <li className="w-[20dvw] h-[20dvh]">
                 <a
-                  href="#about"
-                  className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
+                  href="#skill"
+                  className={`flex justify-center h-full items-center ${
+                    activeSection === 'skill' ? 'text-black' : 'text-primary'
+                  } hover:text-black transition-colors duration-500`}
                 >
-                  <span className="text-black">02. </span>Skill
+                  <span
+                    className={
+                      activeSection === 'project' ? 'text-white' : 'text-black'
+                    }
+                  >
+                    02.{' '}
+                  </span>
+                  Skill
                 </a>
               </li>
               <li className="w-[20dvw] h-[20dvh]">
                 <a
-                  href="#about"
-                  className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
+                  href="#project"
+                  className={`flex justify-center h-full items-center ${
+                    activeSection === 'project' ? 'text-black' : 'text-primary'
+                  } hover:text-black transition-colors duration-500`}
                 >
-                  <span className="text-black">03. </span>Projects
+                  <span
+                    className={
+                      activeSection === 'project' ? 'text-white' : 'text-black'
+                    }
+                  >
+                    03.{' '}
+                  </span>
+                  Projects
                 </a>
               </li>
               <li className="w-[20dvw] h-[20dvh]">
                 <a
-                  href="#about"
+                  href="#contact"
                   className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
                 >
-                  <span className="text-black">04. </span>Contact
+                  <span
+                    className={
+                      activeSection === 'project' ? 'text-white' : 'text-black'
+                    }
+                  >
+                    04.{' '}
+                  </span>
+                  Contact
                 </a>
               </li>
               <li className="w-[20dvw] h-[20dvh]">
                 <a
-                  href="#about"
+                  href="#more"
                   className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
                 >
-                  <span className="text-black">05. </span>More
+                  <span
+                    className={
+                      activeSection === 'project' ? 'text-white' : 'text-black'
+                    }
+                  >
+                    05.{' '}
+                  </span>
+                  More
                 </a>
               </li>
             </ul>
@@ -140,25 +202,54 @@ export const Header = () => {
           <li>
             <a
               href="#about"
-              className="text-garyFont hover:text-primary transition-colors duration-500"
+              className={`${
+                activeSection === 'about' ? 'text-primary' : 'text-garyFont'
+              } hover:text-primary transition-colors duration-500`}
             >
-              <span className="text-primary">01. </span>About
+              <span
+                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
+              >
+                01.{' '}
+              </span>
+              {activeSection === 'project' ? (
+                <span className="text-garyFont">About</span>
+              ) : (
+                'About'
+              )}
             </a>
           </li>
           <li>
             <a
               href="#skill"
-              className="text-garyFont hover:text-primary transition-colors duration-500"
+              className={`${
+                activeSection === 'skill' ? 'text-primary' : 'text-garyFont'
+              } hover:text-primary transition-colors duration-500`}
             >
-              <span className="text-primary">02. </span>Skill
+              <span
+                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
+              >
+                02.{' '}
+              </span>
+              {activeSection === 'project' ? (
+                <span className="text-garyFont">Skill</span>
+              ) : (
+                'Skill'
+              )}
             </a>
           </li>
           <li>
             <a
               href="#project"
-              className="text-garyFont hover:text-primary transition-colors duration-500"
+              className={`${
+                activeSection === 'project' ? 'text-white' : 'text-garyFont'
+              } hover:text-primary transition-colors duration-500`}
             >
-              <span className="text-primary">03. </span>Projects
+              <span
+                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
+              >
+                03.{' '}
+              </span>
+              Projects
             </a>
           </li>
           <li>
@@ -166,7 +257,12 @@ export const Header = () => {
               href="#contact"
               className="text-garyFont hover:text-primary transition-colors duration-500"
             >
-              <span className="text-primary">04. </span>Contact
+              <span
+                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
+              >
+                04.{' '}
+              </span>
+              Contact
             </a>
           </li>
           <li>
@@ -174,7 +270,12 @@ export const Header = () => {
               href="#more"
               className="text-garyFont hover:text-primary transition-colors duration-500"
             >
-              <span className="text-primary">05. </span>More
+              <span
+                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
+              >
+                05.{' '}
+              </span>
+              More
             </a>
           </li>
         </ul>

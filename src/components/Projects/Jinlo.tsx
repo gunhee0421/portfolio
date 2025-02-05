@@ -159,7 +159,7 @@ const Jinlo = () => {
           alt="image"
           width={350}
           height={500}
-          className=" lg:w-[250px] lg:max-h-[400px] xl:w-[350px] xl:max-h-[500px] 2xl:w-[400px] 2xl:max-h-[600px] border-s-white border-[4px] object-cover brightness-75 hover:brightness-100 transition-all duration-500"
+          className="lg:w-[250px] lg:max-h-[400px] xl:w-[350px] xl:max-h-[500px] 2xl:w-[400px] 2xl:max-h-[600px] border-s-white border-[4px] object-cover brightness-75 hover:brightness-100 transition-all duration-500"
         />
       </div>
     </div>

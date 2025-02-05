@@ -34,5 +34,6 @@ export default {
       'vertical-lr': 'vertical-lr',
     },
   },
-  plugins: [],
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  plugins: [require('tailwind-scrollbar-hide')],
 } satisfies Config
