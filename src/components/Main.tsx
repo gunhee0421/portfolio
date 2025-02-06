@@ -1,10 +1,10 @@
 'use client'
 
 import { Header } from './Header'
-import { AboutSection } from './Main/AboutSection'
-import IntroSection from './Main/IntroSection'
-import ProjectSection from './Main/ProjectSection'
-import SkillSection from './Main/SkillSection'
+import { AboutSection } from './Section/AboutSection'
+import IntroSection from './Section/IntroSection'
+import ProjectSection from './Section/ProjectSection'
+import SkillSection from './Section/SkillSection'
 import { LeftNavigation } from './navigation'
 import { useEffect, useRef, useState } from 'react'
 
@@ -46,7 +46,12 @@ const Main = () => {
           <SkillSection />
         </div>
         <ProjectSection />
-        <AboutSection />
+        <div
+          id="contact"
+          className="px-8 sm:px-[4rem] md:px-[4rem] scrollbar-hide lg:px-[5rem] xl:[7rem] 2xl:px-[15rem] bg-bgBlack"
+        >
+          <AboutSection />
+        </div>
       </main>
     </div>
   )
