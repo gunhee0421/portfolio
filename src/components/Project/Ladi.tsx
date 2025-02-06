@@ -19,7 +19,7 @@ const Ladi = () => {
   } = useModal()
 
   return (
-    <div className="w-full flex flex-row lg:justify-around h-[100dvh] font-toss">
+    <div className="w-full flex flex-row lg:justify-around h-[70dvh] font-toss">
       <div className="flex flex-col justify-around lg:w-1/2 h-full">
         <Link href="#ladi">
           <h1 className="text-lg sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-bold hover:text-[#639ef7] transition-colors duration-500">

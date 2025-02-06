@@ -1,29 +1,13 @@
+import { motion, AnimatePresence } from 'framer-motion'
 import GDG from '../Project/Gdg'
 import Jinlo from '../Project/Jinlo'
 import Ladi from '../Project/Ladi'
+import { useEffect, useRef, useState } from 'react'
 
-type ProjectInfo = {
-  id: string
-  bgColor: string
-  Component: React.FC
-}
-
-const PROJECTS: ProjectInfo[] = [
-  {
-    id: 'jinlo',
-    bgColor: 'bg-[#00C369]',
-    Component: Jinlo,
-  },
-  {
-    id: 'gdg',
-    bgColor: 'bg-[#9097C0]',
-    Component: GDG,
-  },
-  {
-    id: 'ladi',
-    bgColor: 'bg-[#1666DB]',
-    Component: Ladi,
-  },
+const PROJECTS = [
+  { component: <Jinlo />, color: 'bg-[#00C369]', id: 'jinlo' },
+  { component: <GDG />, color: 'bg-[#9097C0]', id: 'gdg' },
+  { component: <Ladi />, color: 'bg-[#1666DB]', id: 'ladi' },
 ]
 
 const ProjectHeader = () => (
@@ -40,25 +24,114 @@ const ProjectHeader = () => (
 )
 
 const ProjectSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const isInViewport = useRef(false)
+  const isLocked = useRef(false)
+  const isTransitioning = useRef(false)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.9) {
+          section.scrollIntoView({ behavior: 'instant' })
+          document.body.style.overflow = 'hidden'
+          isInViewport.current = true
+          isLocked.current = true
+        }
+      },
+      {
+        threshold: [0.9],
+        rootMargin: '0px',
+      },
+    )
+
+    const handleWheel = (e: WheelEvent) => {
+      if (!isInViewport.current || isTransitioning.current) return
+      e.preventDefault()
+      e.stopPropagation()
+
+      isTransitioning.current = true
+      setTimeout(() => {
+        isTransitioning.current = false
+      }, 500)
+
+      const dispatchScrollEvent = () => {
+        const scrollEvent = new Event('scroll')
+        window.dispatchEvent(scrollEvent)
+      }
+
+      if (currentIndex === 0 && e.deltaY < 0) {
+        document.body.style.overflow = ''
+        isInViewport.current = false
+        isLocked.current = false
+        return
+      }
+
+      if (currentIndex === PROJECTS.length - 1 && e.deltaY > 0) {
+        document.body.style.overflow = ''
+        isInViewport.current = false
+        isLocked.current = false
+        return
+      }
+
+      if (e.deltaY > 0 && currentIndex < PROJECTS.length - 1) {
+        setCurrentIndex((prev) => prev + 1)
+        dispatchScrollEvent()
+      } else if (e.deltaY < 0 && currentIndex > 0) {
+        setCurrentIndex((prev) => prev - 1)
+        dispatchScrollEvent()
+      }
+    }
+
+    observer.observe(section)
+    window.addEventListener('wheel', handleWheel, {
+      passive: false,
+      capture: true,
+    })
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('wheel', handleWheel, { capture: true })
+      document.body.style.overflow = ''
+    }
+  }, [currentIndex])
+
   return (
-    <div>
-      {PROJECTS.map(({ id, bgColor, Component }, index) => (
-        <div
-          key={id}
-          id={id}
-          className={`px-8 sm:px-[4rem] md:px-[4rem] lg:px-[5rem] xl:[7rem] 2xl:px-[15rem] ${bgColor}`}
+    <div
+      ref={sectionRef}
+      className={`h-screen ${PROJECTS[currentIndex].color} transition-colors duration-700`}
+    >
+      <div className="px-8 sm:px-[4rem] md:px-[4rem] lg:px-[5rem] xl:[7rem] 2xl:px-[15rem]">
+        <section
+          id={currentIndex === 0 ? 'project' : undefined}
+          className="h-screen py-[50px] sm:py-[12dvh]"
         >
-          <section
-            id={index === 0 ? 'project' : id}
-            className="h-screen py-[50px] sm:py-[12dvh]"
-          >
-            <div className="flex flex-col h-full w-full text-white">
-              {index === 0 && <ProjectHeader />}
-              <Component />
+          <div className="flex flex-col h-full w-full text-white">
+            {currentIndex === 0 && <ProjectHeader />}
+            <div className="flex-1 relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: 'easeInOut',
+                  }}
+                  className="absolute inset-0"
+                >
+                  {PROJECTS[currentIndex].component}
+                </motion.div>
+              </AnimatePresence>
             </div>
-          </section>
-        </div>
-      ))}
+          </div>
+        </section>
+      </div>
     </div>
   )
 }

@@ -16,9 +16,12 @@ const Main = () => {
     const handleScroll = () => {
       if (!mainRef.current) return
 
-      const totalHeight = mainRef.current.scrollHeight - window.innerHeight
+      // 프로젝트 섹션의 높이를 포함한 전체 높이 계산
+      const projectSectionHeight = window.innerHeight * 3 // 3개의 프로젝트
+      const totalHeight =
+        mainRef.current.scrollHeight + projectSectionHeight - window.innerHeight
       const progress = (window.scrollY / totalHeight) * 100
-      setScrollProgress(progress)
+      setScrollProgress(Math.min(progress, 100))
     }
 
     window.addEventListener('scroll', handleScroll)
