@@ -21,7 +21,7 @@ const GDG = () => {
   return (
     <div className="w-full flex flex-row lg:justify-around h-[100dvh] font-toss">
       <div className="flex flex-col justify-around lg:w-1/2 h-full">
-        <Link href="#Gdg">
+        <Link href="#gdg">
           <h1 className="text-lg sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-bold hover:text-[#a4a8bc] transition-colors duration-500">
             GDG: IT-Camp
           </h1>

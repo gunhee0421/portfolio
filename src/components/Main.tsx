@@ -46,6 +46,7 @@ const Main = () => {
           <SkillSection />
         </div>
         <ProjectSection />
+        <AboutSection />
       </main>
     </div>
   )
