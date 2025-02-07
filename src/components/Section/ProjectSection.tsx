@@ -108,12 +108,13 @@ const ProjectSection: React.FC<{
 
   return (
     <div
+      id="project"
       ref={sectionRef}
       className={`h-screen ${PROJECTS[currentIndex].color} transition-colors duration-700`}
     >
       <div className="px-8 sm:px-[4rem] md:px-[4rem] lg:px-[5rem] xl:[7rem] 2xl:px-[15rem]">
         <section
-          id={currentIndex === 0 ? 'project' : undefined}
+          id={PROJECTS[currentIndex].id}
           className="h-screen py-[50px] sm:py-[12dvh]"
         >
           <div className="flex flex-col h-full w-full text-white">
