@@ -2,9 +2,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import GDG from '../Project/Gdg'
 import Jinlo from '../Project/Jinlo'
 import Ladi from '../Project/Ladi'
-import { useEffect, useRef, useState } from 'react'
+import React, { SetStateAction, useEffect, useRef } from 'react'
 
-const PROJECTS = [
+export const PROJECTS = [
   { component: <Jinlo />, color: 'bg-[#00C369]', id: 'jinlo' },
   { component: <GDG />, color: 'bg-[#9097C0]', id: 'gdg' },
   { component: <Ladi />, color: 'bg-[#1666DB]', id: 'ladi' },
@@ -23,8 +23,10 @@ const ProjectHeader = () => (
   </div>
 )
 
-const ProjectSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
+const ProjectSection: React.FC<{
+  currentIndex: number
+  setCurrentIndex: React.Dispatch<SetStateAction<number>>
+}> = ({ currentIndex, setCurrentIndex }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const isInViewport = useRef(false)
   const isLocked = useRef(false)
@@ -98,6 +100,10 @@ const ProjectSection = () => {
       window.removeEventListener('wheel', handleWheel, { capture: true })
       document.body.style.overflow = ''
     }
+  }, [currentIndex, setCurrentIndex])
+
+  useEffect(() => {
+    console.log('projectSection: ', currentIndex)
   }, [currentIndex])
 
   return (
