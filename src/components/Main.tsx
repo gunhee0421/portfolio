@@ -22,19 +22,17 @@ const Main = () => {
       const totalHeight =
         mainRef.current.scrollHeight + projectSectionHeight - window.innerHeight
 
-      // 스크롤 위치와 현재 프로젝트 인덱스를 결합하여 계산
       const scrollPosition = window.scrollY + currentIndex * projectHeight
       const progress = (scrollPosition / totalHeight) * 100
 
       setScrollProgress(Math.min(progress, 100))
     }
 
-    // 초기 스크롤 상태 설정
     handleScroll()
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [currentIndex]) // setCurrentIndex 제거
+  }, [currentIndex])
 
   useEffect(() => {
     console.log('main: ', currentIndex)
