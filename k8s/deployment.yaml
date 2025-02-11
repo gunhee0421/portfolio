@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: profile
+  template:
+    metadata:
+      labels:
+        app: profile
+    spec:
+      containers:
+        - name: profile
+          image: profile
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: profile-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: profile
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
