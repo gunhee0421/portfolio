@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Build & Push Frontend') {
             steps {
-                sh 'docker build -t $GCP_REGISTRY/$FRONTEND_IMAGE -f ./Dockerfile .'
+                sh 'docker build -t $GCP_REGISTRY/$FRONTEND_IMAGE -f ./dockerfile .'
                 sh 'docker push $GCP_REGISTRY/$FRONTEND_IMAGE'
             }
         }
