@@ -23,6 +23,7 @@ pipeline {
             steps {
                 sh 'docker build -t $GCP_REGISTRY/$FRONTEND_IMAGE -f ./dockerfile .'
                 sh 'docker push $GCP_REGISTRY/$FRONTEND_IMAGE'
+                sh 'docker system prune -f'
             }
         }
         stage('Deploy to GKE') {
