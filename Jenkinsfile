@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy to GKE') {
             steps {
                 sh 'gcloud container clusters get-credentials nextjs-cluster --zone=$GCP_ZONE'
-                sh 'kubectl apply -f frontend-deployment.yaml || true'
+                sh 'kubectl apply -f k8s/deployment.yaml || true'
                 sh 'kubectl set image deployment/frontend-deployment frontend=$GCP_REGISTRY/$FRONTEND_IMAGE'
                 sh 'kubectl rollout status deployment/frontend-deployment'
             }

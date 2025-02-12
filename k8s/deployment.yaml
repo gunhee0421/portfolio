@@ -18,7 +18,7 @@ spec:
         - name: frontend
           image: asia-northeast3-docker.pkg.dev/profile-450607/profile-repo/frontend:latest
           ports:
-            - containerPort: 80
+            - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
@@ -31,4 +31,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 3000
