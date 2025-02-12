@@ -21,9 +21,9 @@ pipeline {
         }
         stage('Build & Push Frontend') {
             steps {
-                sh 'docker system prune -f'
                 sh 'docker build -t $GCP_REGISTRY/$FRONTEND_IMAGE -f ./dockerfile .'
                 sh 'docker push $GCP_REGISTRY/$FRONTEND_IMAGE'
+                sh 'docker system prune -a -f'
             }
         }
         stage('Deploy to GKE') {
