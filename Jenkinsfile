@@ -7,6 +7,13 @@ pipeline {
         FRONTEND_IMAGE = 'frontend:latest'
     }
     stages {
+      stage('Authenticate GCP') {
+            steps {
+                sh 'gcloud config set account jenkins-sa@profile-450607.iam.gserviceaccount.com'
+                sh 'gcloud auth activate-service-account jenkins-sa@profile-450607.iam.gserviceaccount.com --key-file=/var/lib/jenkins/gcp-key.json'
+                sh 'gcloud auth configure-docker asia-northeast3-docker.pkg.dev'
+            }
+        }
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/gunhee0421/portfolio'
