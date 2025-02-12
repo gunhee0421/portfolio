@@ -71,13 +71,13 @@ const GDG = () => {
           <div className="flex flex-row gap-2">
             <div
               onClick={() => {
-                setSelectedImage('/images/project/Gdg/one.png')
+                setSelectedImage('/images/project/gdg/one.png')
                 openModal()
               }}
               className="w-1/3 cursor-pointer h-full"
             >
               <Image
-                src={'/images/project/Gdg/one.png'}
+                src={'/images/project/gdg/one.png'}
                 alt="주요 사진 1"
                 width={200}
                 height={400}
@@ -86,13 +86,13 @@ const GDG = () => {
             </div>
             <div
               onClick={() => {
-                setSelectedImage('/images/project/Gdg/two.png')
+                setSelectedImage('/images/project/gdg/two.png')
                 openModal()
               }}
               className="w-1/3 cursor-pointer"
             >
               <Image
-                src={'/images/project/Gdg/two.png'}
+                src={'/images/project/gdg/two.png'}
                 alt="주요 사진 1"
                 width={200}
                 height={400}
@@ -101,13 +101,13 @@ const GDG = () => {
             </div>
             <div
               onClick={() => {
-                setSelectedImage('/images/project/Gdg/three.png')
+                setSelectedImage('/images/project/gdg/three.png')
                 openModal()
               }}
               className="w-1/3 cursor-pointer"
             >
               <Image
-                src={'/images/project/Gdg/three.png'}
+                src={'/images/project/gdg/three.png'}
                 alt="주요 사진 1"
                 width={200}
                 height={400}
