@@ -9,7 +9,7 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['intro', 'about', 'skill', 'project']
+      const sections = ['intro', 'about', 'skill', 'project', 'contact', 'more']
 
       for (const section of sections) {
         const element = document.getElementById(section)

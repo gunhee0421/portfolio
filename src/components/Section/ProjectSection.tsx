@@ -47,7 +47,6 @@ const ProjectSection: React.FC<{
       },
       {
         threshold: [0.9],
-        rootMargin: '0px',
       },
     )
 
@@ -107,39 +106,66 @@ const ProjectSection: React.FC<{
   }, [currentIndex])
 
   return (
-    <div
+    <article
       id="project"
-      ref={sectionRef}
-      className={`h-screen ${PROJECTS[currentIndex].color} transition-colors duration-700`}
+      className={`${PROJECTS[currentIndex].color} h-[105dvh] transition-colors duration-400 ease-in-out`}
     >
-      <div className="px-8 sm:px-[4rem] md:px-[4rem] lg:px-[5rem] xl:[7rem] 2xl:px-[15rem]">
+      <div
+        id={PROJECTS[0].id}
+        className={`block px-8 sm:px-[4rem] md:px-[4rem] lg:hidden ${PROJECTS[0].color}`}
+      >
         <section
-          id={PROJECTS[currentIndex].id}
-          className="h-screen py-[50px] sm:py-[12dvh]"
+          id={PROJECTS[0].id}
+          className="h-screen py-[50px] sm:py-[12dvh] text-white"
         >
-          <div className="flex flex-col h-full w-full text-white">
-            {currentIndex === 0 && <ProjectHeader />}
-            <div className="flex-1 relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentIndex}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{
-                    duration: 0.5,
-                    ease: 'easeInOut',
-                  }}
-                  className="absolute inset-0"
-                >
-                  {PROJECTS[currentIndex].component}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
+          <ProjectHeader />
+          {PROJECTS[0].component}
         </section>
       </div>
-    </div>
+      {PROJECTS.slice(1).map((project, idx) => (
+        <div
+          key={idx}
+          id={project.id}
+          className={`block px-8 sm:px-[4rem] md:px-[4rem] lg:hidden ${project.color}`}
+        >
+          <section className="h-screen py-[50px] sm:py-[12dvh] text-white">
+            {project.component}
+          </section>
+        </div>
+      ))}
+      <div
+        ref={sectionRef}
+        className={`hidden lg:block h-screen ${PROJECTS[currentIndex].color} transition-colors duration-700`}
+      >
+        <div className="px-8 sm:px-[4rem] md:px-[4rem] lg:px-[5rem] xl:[7rem] 2xl:px-[15rem]">
+          <section
+            id={PROJECTS[currentIndex].id}
+            className="h-screen py-[50px] sm:py-[12dvh]"
+          >
+            <div className="flex flex-col h-full w-full text-white">
+              {currentIndex === 0 && <ProjectHeader />}
+              <div className="flex-1 relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{
+                      duration: 0.5,
+                      ease: 'easeInOut',
+                    }}
+                    className="absolute inset-0"
+                  >
+                    {PROJECTS[currentIndex].component}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </article>
   )
 }
 
