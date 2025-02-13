@@ -106,8 +106,12 @@ const ProjectSection: React.FC<{
   }, [currentIndex])
 
   return (
-    <article id="project">
+    <article
+      id="project"
+      className={`${PROJECTS[currentIndex].color} h-[105dvh] transition-colors duration-400 ease-in-out`}
+    >
       <div
+        id={PROJECTS[0].id}
         className={`block px-8 sm:px-[4rem] md:px-[4rem] lg:hidden ${PROJECTS[0].color}`}
       >
         <section
