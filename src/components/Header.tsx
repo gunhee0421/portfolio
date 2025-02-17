@@ -9,7 +9,7 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['intro', 'about', 'skill', 'project', 'more']
+      const sections = ['profile', 'intro', 'about', 'skill', 'project', 'more']
 
       for (const section of sections) {
         const element = document.getElementById(section)
@@ -28,7 +28,7 @@ export const Header = () => {
   }, [])
 
   return (
-    <div className="flex flex-row min-w-full justify-between backdrop-blur-md items-center lg:pt-5">
+    <div className="flex flex-row min-w-full justify-between backdrop-blur-md items-center lg:pt-5 font-blackHanSans">
       <div className="hover:cursor-pointer">
         <a href="">
           <div className="sm:hidden">
@@ -107,9 +107,9 @@ export const Header = () => {
             >
               <li className="w-[20dvw] h-[20dvh]">
                 <a
-                  href="#about"
+                  href="#profile"
                   className={`flex justify-center h-full items-center ${
-                    activeSection === 'about' ? 'text-black' : 'text-primary'
+                    activeSection === 'profile' ? 'text-black' : 'text-primary'
                   } hover:text-black transition-colors duration-500`}
                 >
                   <span
@@ -213,8 +213,8 @@ export const Header = () => {
               >
                 01.{' '}
               </span>
-              {activeSection === 'profile' ? (
-                <span className="text-garyFont">About</span>
+              {activeSection === 'project' ? (
+                <span className="text-garyFont">Profile</span>
               ) : (
                 'Profile'
               )}

@@ -11,6 +11,7 @@ export default {
       fontFamily: {
         toss: ['Toss'],
         notoSans: ['Noto Sans'],
+        blackHanSans: ['BlackHanSans'],
       },
       colors: {
         background: 'var(--background)',

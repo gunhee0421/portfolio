@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { SectionTitle } from '../ui/Title'
 
 const WebDesign: React.FC<{
   visible: number
@@ -9,14 +10,7 @@ const WebDesign: React.FC<{
   return (
     <div className="hidden sm:flex flex-row justify-between h-full">
       <div className="w-[40%] relative group pr-4">
-        <h1 className="md:pb-6 xl:pb-10 2xl:pb-20">
-          <a
-            href="#about"
-            className="text-white md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
-          >
-            <span className="text-primary">01. </span>About
-          </a>
-        </h1>
+        <SectionTitle title="About" />
         <div
           className={`flex justify-center items-center transition-opacity duration-700 w-[80%] h-[80%]`}
         >
@@ -86,14 +80,7 @@ const MobileDesign: React.FC<{
 }> = ({ visible, setVisible }) => {
   return (
     <div className="flex flex-col h-full sm:hidden">
-      <h1 className="md:pb-6 xl:pb-10 2xl:pb-20">
-        <a
-          href="#about"
-          className="text-white md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
-        >
-          <span className="text-primary">01. </span>About
-        </a>
-      </h1>
+      <SectionTitle title="About" />
       <div
         className={`w-[90%] m-auto font-notoSans text-[0.75rem] md:text-[2dvw] xl:text-3xl 2xl:text-4xl flex flex-col items-center justify-center transition-all duration-500 ${
           visible > 0 ? 'text-[#696969]' : 'text-white'

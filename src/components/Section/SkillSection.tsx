@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { SectionTitle } from '../ui/Title'
 
 const SkillComponent: React.FC<{
   image: string
@@ -74,14 +75,7 @@ export const SkillSection = () => {
       >
         <div className="flex flex-col h-full text-white">
           <div className=" flex flex-row justify-between">
-            <h1 className="md:pb-3 xl:pb-5 2xl:pb-10">
-              <a
-                href="#skill"
-                className="text-white md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
-              >
-                <span className="text-primary">02. </span>Skill
-              </a>
-            </h1>
+            <SectionTitle title="Skill" />
             <nav className="w-fit lg:hidden font-toss font-semibold relative">
               <div
                 className={`absolute left-0 bottom-0 md:bottom-2 w-1/2 h-[2px] md:h-1 bg-primary transition-transform duration-500`}

@@ -1,25 +1,13 @@
 import GDG from '../Project/Gdg'
 import Jinlo from '../Project/Jinlo'
 import Ladi from '../Project/Ladi'
+import { SectionTitle } from '../ui/Title'
 
 export const PROJECTS = [
   { component: <Jinlo />, color: 'bg-[#00C369]', id: 'jinlo' },
   { component: <GDG />, color: 'bg-[#9097C0]', id: 'gdg' },
   { component: <Ladi />, color: 'bg-[#1666DB]', id: 'ladi' },
 ]
-
-const ProjectHeader = () => (
-  <div className="flex flex-row justify-between">
-    <h1 className="md:pb-3 xl:pb-5 2xl:pb-10">
-      <a
-        href="#project"
-        className="text-white md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
-      >
-        <span className="text-primary">03. </span>Projects
-      </a>
-    </h1>
-  </div>
-)
 
 const ProjectSection = () => {
   return (
@@ -35,7 +23,7 @@ const ProjectSection = () => {
           id={PROJECTS[0].id}
           className="h-screen py-[50px] sm:py-[12dvh] text-white"
         >
-          <ProjectHeader />
+          <SectionTitle title="Projects" />
           {PROJECTS[0].component}
         </section>
       </div>
@@ -59,7 +47,7 @@ const ProjectSection = () => {
           >
             <section className="h-screen py-[50px] sm:py-[12dvh]">
               <div className="flex flex-col h-full w-full text-white">
-                {idx === 0 && <ProjectHeader />}
+                {idx === 0 && <SectionTitle title="Projects" />}
                 {project.component}
               </div>
             </section>

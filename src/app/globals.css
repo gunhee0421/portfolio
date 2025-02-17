@@ -54,3 +54,11 @@ body {
   font-display: swap;
   src: url('/fonts/NotosansKr.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: BlackHanSans;
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('/fonts/BlackHanSans.ttf') format('truetype');
+}

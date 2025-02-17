@@ -80,7 +80,7 @@ const IntroSection = () => {
           다시 보기
         </button>
         <a
-          href="#about"
+          href="#profile"
           className={`${showRestartButton ? 'block' : 'hidden'} absolute bottom-[10vh]`}
         >
           <ChevronsDown
