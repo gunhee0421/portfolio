@@ -37,7 +37,7 @@ const WebDesign: React.FC<{
         </div>
       </div>
       <div
-        className={`w-[60%] font-notoSans md:text-[2dvw] xl:text-3xl 2xl:text-4xl flex flex-col items-center justify-center transition-all duration-500 ${
+        className={`w-[60%] font-notoSans md:text-[1.7dvw] xl:text-2xl 2xl:text-3xl flex flex-col items-center justify-center transition-all duration-500 ${
           visible > 0 ? 'text-[#696969]' : 'text-white'
         }`}
       >
@@ -73,8 +73,7 @@ const WebDesign: React.FC<{
             “욕망은 창의성, 사랑 그리고 장수를 촉진하는 강력한 강장제다.”
           </strong>{' '}
           제가 가장 좋아하는 명언 입니다. 더 좋은 서비스를 만들기 위해 만족하지
-          않고, 끊임없이 성장하는 개발자가 되겠습니다. 만족하지 않고 성장해
-          나가는 프론트엔드 개발자가 되겠습니다.
+          않고, 끊임없이 성장하는 개발자가 되겠습니다.
         </p>
       </div>
     </div>

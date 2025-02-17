@@ -9,7 +9,7 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['intro', 'about', 'skill', 'project', 'contact', 'more']
+      const sections = ['intro', 'about', 'skill', 'project', 'more']
 
       for (const section of sections) {
         const element = document.getElementById(section)
@@ -158,21 +158,6 @@ export const Header = () => {
               </li>
               <li className="w-[20dvw] h-[20dvh]">
                 <a
-                  href="#contact"
-                  className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
-                >
-                  <span
-                    className={
-                      activeSection === 'project' ? 'text-white' : 'text-black'
-                    }
-                  >
-                    04.{' '}
-                  </span>
-                  Contact
-                </a>
-              </li>
-              <li className="w-[20dvw] h-[20dvh]">
-                <a
                   href="#more"
                   className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
                 >
@@ -181,7 +166,7 @@ export const Header = () => {
                       activeSection === 'project' ? 'text-white' : 'text-black'
                     }
                   >
-                    05.{' '}
+                    04.{' '}
                   </span>
                   More
                 </a>
@@ -254,26 +239,13 @@ export const Header = () => {
           </li>
           <li>
             <a
-              href="#contact"
-              className="text-garyFont hover:text-primary transition-colors duration-500"
-            >
-              <span
-                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
-              >
-                04.{' '}
-              </span>
-              Contact
-            </a>
-          </li>
-          <li>
-            <a
               href="#more"
               className="text-garyFont hover:text-primary transition-colors duration-500"
             >
               <span
                 className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
               >
-                05.{' '}
+                04.{' '}
               </span>
               More
             </a>

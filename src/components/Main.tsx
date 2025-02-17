@@ -3,6 +3,7 @@
 import { Header } from './Header'
 import { AboutSection } from './Section/AboutSection'
 import IntroSection from './Section/IntroSection'
+import MoreSection from './Section/MoreSection'
 import ProjectSection from './Section/ProjectSection'
 import SkillSection from './Section/SkillSection'
 import { LeftNavigation } from './navigation'
@@ -53,9 +54,7 @@ const Main = () => {
           <SkillSection />
         </div>
         <ProjectSection />
-        <div className="px-8 sm:px-[4rem] md:px-[4rem] scrollbar-hide lg:px-[5rem] xl:[7rem] 2xl:px-[15rem">
-          <AboutSection />
-        </div>
+        <MoreSection />
       </main>
     </div>
   )
