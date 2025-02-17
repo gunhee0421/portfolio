@@ -3,7 +3,7 @@
 import { Header } from './Header'
 import { AboutSection } from './Section/AboutSection'
 import IntroSection from './Section/IntroSection'
-import MoreSection from './Section/MoreSection'
+import ProfileSection from './Section/ProfileSection'
 import ProjectSection from './Section/ProjectSection'
 import SkillSection from './Section/SkillSection'
 import { LeftNavigation } from './navigation'
@@ -45,16 +45,14 @@ const Main = () => {
         </div>
       </header>
       <main className="overflow-x-hidden scrollbar-hide bg-bgBlack">
-        <div className="px-8 sm:px-[4rem] md:px-[4rem] scrollbar-hide lg:px-[5rem] xl:[7rem] 2xl:px-[15rem]">
-          <div className="fixed right-[4dvw] bottom-0 xl:right-8 2xl:right-20 w-fit">
-            <LeftNavigation />
-          </div>
-          <IntroSection />
-          <AboutSection />
-          <SkillSection />
+        <IntroSection />
+        <ProfileSection />
+        <AboutSection />
+        <SkillSection />
+        <div className="fixed right-[4dvw] bottom-0 xl:right-8 2xl:right-20 w-fit">
+          <LeftNavigation />
         </div>
         <ProjectSection />
-        <MoreSection />
       </main>
     </div>
   )

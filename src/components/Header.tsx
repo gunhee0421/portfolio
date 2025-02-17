@@ -119,6 +119,23 @@ export const Header = () => {
                   >
                     01.{' '}
                   </span>
+                  Profile
+                </a>
+              </li>
+              <li className="w-[20dvw] h-[20dvh]">
+                <a
+                  href="#about"
+                  className={`flex justify-center h-full items-center ${
+                    activeSection === 'about' ? 'text-black' : 'text-primary'
+                  } hover:text-black transition-colors duration-500`}
+                >
+                  <span
+                    className={
+                      activeSection === 'project' ? 'text-white' : 'text-black'
+                    }
+                  >
+                    02.{' '}
+                  </span>
                   About
                 </a>
               </li>
@@ -134,7 +151,7 @@ export const Header = () => {
                       activeSection === 'project' ? 'text-white' : 'text-black'
                     }
                   >
-                    02.{' '}
+                    03.{' '}
                   </span>
                   Skill
                 </a>
@@ -151,7 +168,7 @@ export const Header = () => {
                       activeSection === 'project' ? 'text-white' : 'text-black'
                     }
                   >
-                    03.{' '}
+                    04.{' '}
                   </span>
                   Projects
                 </a>
@@ -166,7 +183,7 @@ export const Header = () => {
                       activeSection === 'project' ? 'text-white' : 'text-black'
                     }
                   >
-                    04.{' '}
+                    05.{' '}
                   </span>
                   More
                 </a>
@@ -186,6 +203,25 @@ export const Header = () => {
         <ul className="flex flex-row gap-5 pr-8 font-bold lg:text-xl">
           <li>
             <a
+              href="#profile"
+              className={`${
+                activeSection === 'profile' ? 'text-primary' : 'text-garyFont'
+              } hover:text-primary transition-colors duration-500`}
+            >
+              <span
+                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
+              >
+                01.{' '}
+              </span>
+              {activeSection === 'profile' ? (
+                <span className="text-garyFont">About</span>
+              ) : (
+                'Profile'
+              )}
+            </a>
+          </li>
+          <li>
+            <a
               href="#about"
               className={`${
                 activeSection === 'about' ? 'text-primary' : 'text-garyFont'
@@ -194,7 +230,7 @@ export const Header = () => {
               <span
                 className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
               >
-                01.{' '}
+                02.{' '}
               </span>
               {activeSection === 'project' ? (
                 <span className="text-garyFont">About</span>
@@ -213,7 +249,7 @@ export const Header = () => {
               <span
                 className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
               >
-                02.{' '}
+                03.{' '}
               </span>
               {activeSection === 'project' ? (
                 <span className="text-garyFont">Skill</span>
@@ -232,7 +268,7 @@ export const Header = () => {
               <span
                 className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
               >
-                03.{' '}
+                04.{' '}
               </span>
               Projects
             </a>
@@ -245,7 +281,7 @@ export const Header = () => {
               <span
                 className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
               >
-                04.{' '}
+                05.{' '}
               </span>
               More
             </a>

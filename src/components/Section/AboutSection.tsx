@@ -143,10 +143,12 @@ export const AboutSection = () => {
   const [visible, setVisible] = useState(0)
 
   return (
-    <section id="about" className="h-screen py-[50px] sm:py-[20dvh]">
-      <WebDesign visible={visible} setVisible={setVisible} />
-      <MobileDesign visible={visible} setVisible={setVisible} />
-    </section>
+    <div className="px-8 sm:px-[4rem] md:px-[4rem] scrollbar-hide lg:px-[5rem] xl:[7rem] 2xl:px-[15rem]">
+      <section id="about" className="h-screen py-[50px] sm:py-[20dvh]">
+        <WebDesign visible={visible} setVisible={setVisible} />
+        <MobileDesign visible={visible} setVisible={setVisible} />
+      </section>
+    </div>
   )
 }
 
