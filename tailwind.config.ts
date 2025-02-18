@@ -11,6 +11,7 @@ export default {
       fontFamily: {
         toss: ['Toss'],
         notoSans: ['Noto Sans'],
+        blackHanSans: ['BlackHanSans'],
       },
       colors: {
         background: 'var(--background)',
@@ -28,12 +29,22 @@ export default {
           '50%': { opacity: '0' },
         },
       },
+      textShadow: {
+        DEFAULT: '4px 4px 16px rgba(255, 255, 255, 0.5)',
+        md: '2px 2px 6px rgba(255, 255, 255, 0.5)',
+        lg: '3px 3px 8px rgba(255, 255, 255, 0.5)',
+      },
     },
     writingMode: {
       'vertical-rl': 'vertical-rl',
       'vertical-lr': 'vertical-lr',
     },
   },
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  plugins: [require('tailwind-scrollbar-hide')],
+
+  plugins: [
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    require('tailwind-scrollbar-hide'),
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    require('tailwindcss-textshadow'),
+  ],
 } satisfies Config

@@ -9,7 +9,7 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['intro', 'about', 'skill', 'project', 'contact', 'more']
+      const sections = ['profile', 'intro', 'about', 'skill', 'project', 'more']
 
       for (const section of sections) {
         const element = document.getElementById(section)
@@ -28,7 +28,7 @@ export const Header = () => {
   }, [])
 
   return (
-    <div className="flex flex-row min-w-full justify-between backdrop-blur-md items-center lg:pt-5">
+    <div className="flex flex-row min-w-full justify-between backdrop-blur-md items-center lg:pt-5 font-blackHanSans">
       <div className="hover:cursor-pointer">
         <a href="">
           <div className="sm:hidden">
@@ -107,6 +107,23 @@ export const Header = () => {
             >
               <li className="w-[20dvw] h-[20dvh]">
                 <a
+                  href="#profile"
+                  className={`flex justify-center h-full items-center ${
+                    activeSection === 'profile' ? 'text-black' : 'text-primary'
+                  } hover:text-black transition-colors duration-500`}
+                >
+                  <span
+                    className={
+                      activeSection === 'project' ? 'text-white' : 'text-black'
+                    }
+                  >
+                    01.{' '}
+                  </span>
+                  Profile
+                </a>
+              </li>
+              <li className="w-[20dvw] h-[20dvh]">
+                <a
                   href="#about"
                   className={`flex justify-center h-full items-center ${
                     activeSection === 'about' ? 'text-black' : 'text-primary'
@@ -117,7 +134,7 @@ export const Header = () => {
                       activeSection === 'project' ? 'text-white' : 'text-black'
                     }
                   >
-                    01.{' '}
+                    02.{' '}
                   </span>
                   About
                 </a>
@@ -134,7 +151,7 @@ export const Header = () => {
                       activeSection === 'project' ? 'text-white' : 'text-black'
                     }
                   >
-                    02.{' '}
+                    03.{' '}
                   </span>
                   Skill
                 </a>
@@ -151,24 +168,9 @@ export const Header = () => {
                       activeSection === 'project' ? 'text-white' : 'text-black'
                     }
                   >
-                    03.{' '}
-                  </span>
-                  Projects
-                </a>
-              </li>
-              <li className="w-[20dvw] h-[20dvh]">
-                <a
-                  href="#contact"
-                  className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
-                >
-                  <span
-                    className={
-                      activeSection === 'project' ? 'text-white' : 'text-black'
-                    }
-                  >
                     04.{' '}
                   </span>
-                  Contact
+                  Projects
                 </a>
               </li>
               <li className="w-[20dvw] h-[20dvh]">
@@ -201,6 +203,25 @@ export const Header = () => {
         <ul className="flex flex-row gap-5 pr-8 font-bold lg:text-xl">
           <li>
             <a
+              href="#profile"
+              className={`${
+                activeSection === 'profile' ? 'text-primary' : 'text-garyFont'
+              } hover:text-primary transition-colors duration-500`}
+            >
+              <span
+                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
+              >
+                01.{' '}
+              </span>
+              {activeSection === 'project' ? (
+                <span className="text-garyFont">Profile</span>
+              ) : (
+                'Profile'
+              )}
+            </a>
+          </li>
+          <li>
+            <a
               href="#about"
               className={`${
                 activeSection === 'about' ? 'text-primary' : 'text-garyFont'
@@ -209,7 +230,7 @@ export const Header = () => {
               <span
                 className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
               >
-                01.{' '}
+                02.{' '}
               </span>
               {activeSection === 'project' ? (
                 <span className="text-garyFont">About</span>
@@ -228,7 +249,7 @@ export const Header = () => {
               <span
                 className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
               >
-                02.{' '}
+                03.{' '}
               </span>
               {activeSection === 'project' ? (
                 <span className="text-garyFont">Skill</span>
@@ -247,22 +268,9 @@ export const Header = () => {
               <span
                 className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
               >
-                03.{' '}
-              </span>
-              Projects
-            </a>
-          </li>
-          <li>
-            <a
-              href="#contact"
-              className="text-garyFont hover:text-primary transition-colors duration-500"
-            >
-              <span
-                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
-              >
                 04.{' '}
               </span>
-              Contact
+              Projects
             </a>
           </li>
           <li>

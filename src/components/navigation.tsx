@@ -1,11 +1,46 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 export const LeftNavigation = () => {
+  const [link, setLink] = useState('https://github.com/gunhee0421')
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      if (
+        scrollY >= window.innerHeight * 3 &&
+        scrollY < window.innerHeight * 4
+      ) {
+        setLink('https://github.com/gunhee0421/Jjinro')
+      } else if (
+        scrollY >= window.innerHeight * 4 &&
+        scrollY < window.innerHeight * 5
+      ) {
+        setLink(
+          'https://github.com/GDG-on-Campus-Kangnam-University/GDG-Planner-Camp-Web',
+        )
+      } else if (
+        scrollY >= window.innerHeight * 5 &&
+        scrollY < window.innerHeight * 6
+      ) {
+        setLink('https://github.com/gunhee0421/life-designer-web')
+      } else {
+        setLink('https://github.com/gunhee0421')
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <div className="flex flex-col gap-12 justify-center items-center">
       <a
         className="hover:text-primary transition-all duration-500 translate-y-4 hover:translate-y-0 text-white"
-        href="https://github.com/gunhee0421"
+        href={link}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -19,21 +54,6 @@ export const LeftNavigation = () => {
         </svg>
       </a>
       <div className="h-18 md:h-[10dvh] xl:h-56 w-[1px] bg-garyFont" />
-    </div>
-  )
-}
-
-export const RightNavigation = () => {
-  return (
-    <div className="flex flex-col gap-12 justify-center items-center">
-      <a
-        className="text-garyFont hover:text-primary transition-all duration-500 writingMode-vertical-rl text-2xl translate-y-4 hover:translate-y-0"
-        href="https://github.com/gunhee0421"
-        target="_blank"
-      >
-        rjsgml771@naver.com
-      </a>
-      <div className="h-28 sm:h-32 xl:h-48 2xl:h-52 w-[1px] bg-garyFont" />
     </div>
   )
 }

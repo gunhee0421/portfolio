@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { SectionTitle } from '../ui/Title'
 
 const WebDesign: React.FC<{
   visible: number
@@ -9,14 +10,7 @@ const WebDesign: React.FC<{
   return (
     <div className="hidden sm:flex flex-row justify-between h-full">
       <div className="w-[40%] relative group pr-4">
-        <h1 className="md:pb-6 xl:pb-10 2xl:pb-20">
-          <a
-            href="#about"
-            className="text-white md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
-          >
-            <span className="text-primary">01. </span>About
-          </a>
-        </h1>
+        <SectionTitle title="About" />
         <div
           className={`flex justify-center items-center transition-opacity duration-700 w-[80%] h-[80%]`}
         >
@@ -37,7 +31,7 @@ const WebDesign: React.FC<{
         </div>
       </div>
       <div
-        className={`w-[60%] font-notoSans md:text-[2dvw] xl:text-3xl 2xl:text-4xl flex flex-col items-center justify-center transition-all duration-500 ${
+        className={`w-[60%] font-notoSans md:text-[1.7dvw] xl:text-2xl 2xl:text-3xl flex flex-col items-center justify-center transition-all duration-500 ${
           visible > 0 ? 'text-[#696969]' : 'text-white'
         }`}
       >
@@ -73,8 +67,7 @@ const WebDesign: React.FC<{
             “욕망은 창의성, 사랑 그리고 장수를 촉진하는 강력한 강장제다.”
           </strong>{' '}
           제가 가장 좋아하는 명언 입니다. 더 좋은 서비스를 만들기 위해 만족하지
-          않고, 끊임없이 성장하는 개발자가 되겠습니다. 만족하지 않고 성장해
-          나가는 프론트엔드 개발자가 되겠습니다.
+          않고, 끊임없이 성장하는 개발자가 되겠습니다.
         </p>
       </div>
     </div>
@@ -87,14 +80,7 @@ const MobileDesign: React.FC<{
 }> = ({ visible, setVisible }) => {
   return (
     <div className="flex flex-col h-full sm:hidden">
-      <h1 className="md:pb-6 xl:pb-10 2xl:pb-20">
-        <a
-          href="#about"
-          className="text-white md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
-        >
-          <span className="text-primary">01. </span>About
-        </a>
-      </h1>
+      <SectionTitle title="About" />
       <div
         className={`w-[90%] m-auto font-notoSans text-[0.75rem] md:text-[2dvw] xl:text-3xl 2xl:text-4xl flex flex-col items-center justify-center transition-all duration-500 ${
           visible > 0 ? 'text-[#696969]' : 'text-white'
@@ -144,10 +130,12 @@ export const AboutSection = () => {
   const [visible, setVisible] = useState(0)
 
   return (
-    <section id="about" className="h-screen py-[50px] sm:py-[20dvh]">
-      <WebDesign visible={visible} setVisible={setVisible} />
-      <MobileDesign visible={visible} setVisible={setVisible} />
-    </section>
+    <div className="px-8 sm:px-[4rem] md:px-[4rem] scrollbar-hide lg:px-[5rem] xl:[7rem] 2xl:px-[15rem]">
+      <section id="about" className="h-screen py-[50px] sm:py-[20dvh]">
+        <WebDesign visible={visible} setVisible={setVisible} />
+        <MobileDesign visible={visible} setVisible={setVisible} />
+      </section>
+    </div>
   )
 }
 

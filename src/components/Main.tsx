@@ -3,40 +3,35 @@
 import { Header } from './Header'
 import { AboutSection } from './Section/AboutSection'
 import IntroSection from './Section/IntroSection'
-import ProjectSection, { PROJECTS } from './Section/ProjectSection'
+import ProfileSection from './Section/ProfileSection'
+import ProjectSection from './Section/ProjectSection'
 import SkillSection from './Section/SkillSection'
 import { LeftNavigation } from './navigation'
 import { useEffect, useRef, useState } from 'react'
 
 const Main = () => {
   const [scrollProgress, setScrollProgress] = useState(0)
-  const [currentIndex, setCurrentIndex] = useState(0)
   const mainRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!mainRef.current) return
+      if (mainRef.current) {
+        const scrollTop = window.scrollY
+        const scrollHeight = document.documentElement.scrollHeight
+        const clientHeight = document.documentElement.clientHeight
 
-      const projectHeight = window.innerHeight
-      const projectSectionHeight = window.innerHeight * (PROJECTS.length - 1)
-      const totalHeight =
-        mainRef.current.scrollHeight + projectSectionHeight - window.innerHeight
+        const totalHeight = scrollHeight - clientHeight
 
-      const scrollPosition = window.scrollY + currentIndex * projectHeight
-      const progress = (scrollPosition / totalHeight) * 100
-
-      setScrollProgress(Math.min(progress, 100))
+        const progress = (scrollTop / totalHeight) * 100
+        setScrollProgress(progress)
+      }
     }
 
-    handleScroll()
-
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [currentIndex])
-
-  useEffect(() => {
-    console.log('main: ', currentIndex)
-  }, [currentIndex])
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <div className="w-full min-h-screen scrollbar-hide" ref={mainRef}>
@@ -49,25 +44,15 @@ const Main = () => {
           />
         </div>
       </header>
-      <main className="overflow-x-hidden scrollbar-hide">
-        <div className="px-8 sm:px-[4rem] md:px-[4rem] scrollbar-hide lg:px-[5rem] xl:[7rem] 2xl:px-[15rem] bg-bgBlack">
-          <div className="fixed right-[4dvw] bottom-0 xl:right-8 2xl:right-20 w-fit">
-            <LeftNavigation />
-          </div>
-          <IntroSection />
-          <AboutSection />
-          <SkillSection />
+      <main className="overflow-x-hidden scrollbar-hide bg-bgBlack">
+        <IntroSection />
+        <ProfileSection />
+        <AboutSection />
+        <SkillSection />
+        <div className="fixed right-[4dvw] bottom-0 xl:right-8 2xl:right-20 w-fit">
+          <LeftNavigation />
         </div>
-        <ProjectSection
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-        <div
-          id="contact"
-          className="px-8 sm:px-[4rem] md:px-[4rem] scrollbar-hide lg:px-[5rem] xl:[7rem] 2xl:px-[15rem] bg-bgBlack"
-        >
-          <AboutSection />
-        </div>
+        <ProjectSection />
       </main>
     </div>
   )

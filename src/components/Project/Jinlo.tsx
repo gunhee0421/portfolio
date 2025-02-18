@@ -23,7 +23,7 @@ const Jinlo = () => {
         <h1 className="text-lg sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-bold">
           찐로
         </h1>
-        <ol className="grid grid-cols-2 gap-x-8 gap-y-6 w-full lg:flex lg:flex-row lg:justify-between pt-4">
+        <ol className="grid grid-cols-2 w-full lg:flex lg:flex-row lg:justify-between pt-4">
           <li>
             <TitleLabel title="플랫폼" />
             <ContentLabel>모바일</ContentLabel>
