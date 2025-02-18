@@ -32,7 +32,7 @@ const NotionModal = ({ isOpen, onClose, notionUrl }: ModalProps) => {
             onClick={onClose}
           />
           <motion.div
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[80vh] bg-white rounded-lg p-6 z-50"
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[95dvh] bg-white rounded-lg p-6 z-50"
             initial={{ scale: 0.8, opacity: 0, x: '-50%', y: '-50%' }}
             animate={{ scale: 1, opacity: 1, x: '-50%', y: '-50%' }}
             exit={{ scale: 0.8, opacity: 0, x: '-50%', y: '-50%' }}

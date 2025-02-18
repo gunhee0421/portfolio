@@ -1,0 +1,703 @@
+<!-- eslint-disable -->
+<!-- prettier-ignore -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>오늘의회의(TodayScrum)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="14d3b2c5-48ec-8084-9208-c8ce59776181" class="page sans"><header><h1 class="page-title">오늘의회의(TodayScrum)</h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><div id="1513b2c5-48ec-80a6-be7a-c8725711985a" class="column-list"><div id="c4943c27-5e8d-48d2-b04a-09ffcbc33b53" style="width:50%" class="column"><h2 id="f33d3a64-16e1-4f3c-b0d5-e8cb99994638" class="">오늘의회의(TodayScrum)- 풀스택 개발 및 배포</h2><p id="8042d90b-077d-4abc-8587-9033b0bf7a0d" class="">오늘의 회의는 20대 초반 프로젝트를 처음 진행하는 대학생들을 위한 프로젝트 지원 커뮤니티 서비스 입니다. </p><p id="2ef86206-4f00-4104-9d0f-8ddd5ca774ea" class=""><a href="https://github.com/KNU-Develop/todayscrum-frontend">배포사이트 →</a>        <a href="https://github.com/KNU-Develop/todayscrum-frontend">Front Github → </a>       <a href="https://github.com/KNU-Develop/todayscrum-backend">Back Github →</a></p><p id="dfe4edf9-673b-4534-84a4-6db44df2b8ab" class=""><em><mark class="highlight-gray">2024.06 ~ 2024.10</mark></em></p><h3 id="99a30e58-e19b-434f-9944-40b224bb25c1" class=""><strong>🙋🏻‍♂️ 내가 기여한 부분</strong></h3><p id="1523b2c5-48ec-8005-b0a7-d7f14d6daf8a" class=""><strong>프로젝트 컴포넌트 개선</strong></p><ul id="1523b2c5-48ec-8034-b640-db3a05190440" class="bulleted-list"><li style="list-style-type:disc">기존 프로젝트 컴포넌트의 API 연결</li></ul><ul id="1523b2c5-48ec-803b-8545-eb8bc2054253" class="bulleted-list"><li style="list-style-type:disc">프로젝트 필터링 기능 추가</li></ul><p id="1523b2c5-48ec-8062-bb0e-da0b754b747e" class="">
+</p><p id="1523b2c5-48ec-80ca-8ff4-c064240a4250" class=""><strong>보드 컴포넌트 개선</strong></p><ul id="1523b2c5-48ec-80ac-9acc-f6794197d7a0" class="bulleted-list"><li style="list-style-type:disc">API 연결</li></ul><ul id="1523b2c5-48ec-801a-88c2-d9a40b0a038a" class="bulleted-list"><li style="list-style-type:disc">보드의 컴포넌트 디자인 및 동작 개선</li></ul><ul id="1523b2c5-48ec-8059-bc1b-ddec72f54695" class="bulleted-list"><li style="list-style-type:disc">보드 생성, 수정 모달 개발</li></ul><p id="1523b2c5-48ec-80de-a0dc-fe34f14880f2" class="">
+</p><p id="1523b2c5-48ec-8096-9d8b-de4577e7ce84" class=""><strong>댓글 컴포넌트 개선</strong></p><ul id="1523b2c5-48ec-8094-92cf-eba3bd3e44fa" class="bulleted-list"><li style="list-style-type:disc">API 연결</li></ul><ul id="1523b2c5-48ec-80f7-b8cb-f2af7420f3e9" class="bulleted-list"><li style="list-style-type:disc">댓글의 디자인 및 동작 개선</li></ul><ul id="1523b2c5-48ec-808c-bd7f-ccde688dd971" class="bulleted-list"><li style="list-style-type:disc">댓글 멘션 기능 개발</li></ul><p id="1523b2c5-48ec-806b-8048-f3c926c8117b" class="">
+</p><p id="1523b2c5-48ec-8047-9031-fd1384496a35" class=""><strong>알림 컴포넌트 개발</strong></p><ul id="1523b2c5-48ec-8093-aa19-dca5db7c3d8b" class="bulleted-list"><li style="list-style-type:disc">알림 컴포넌트 개발</li></ul><ul id="1523b2c5-48ec-80ea-aaed-f5860a914dce" class="bulleted-list"><li style="list-style-type:disc">알림 애니메이션 설정</li></ul><p id="1523b2c5-48ec-8082-9b28-e03741851157" class="">
+</p><p id="1523b2c5-48ec-803b-8f89-cb8ab5f4691e" class=""><strong>일정 캘린더 API 연결 및 디자인 개선</strong></p><ul id="1523b2c5-48ec-8027-b9f5-dd5924d4dec4" class="bulleted-list"><li style="list-style-type:disc">일정 캘린더의 API 연결</li></ul><ul id="1523b2c5-48ec-80b1-b8b1-c7dfed7ecd56" class="bulleted-list"><li style="list-style-type:disc">동작과정의 디자인 개선</li></ul><p id="1523b2c5-48ec-80dc-afa0-ea67af9e26b3" class="">
+</p><p id="10b456c7-7965-4ba3-a931-a64a17106f60" class=""><strong>프로젝트 API 개발</strong></p><ul id="75acca51-0f25-4534-884d-31110d4fc425" class="bulleted-list"><li style="list-style-type:disc">프로젝트 CRUD API를 개발</li></ul><ul id="1523b2c5-48ec-8005-8aaf-f06df1912a12" class="bulleted-list"><li style="list-style-type:disc">프로젝트에 접근 가능한 인가 권한 관련 문제 처리를 위한 접근 관리를 진행</li></ul><p id="0e31cb29-2f3f-4087-96fa-0094bb077c9c" class="">
+</p><p id="f4270cdd-d7ce-4b4d-a952-2cb06849b98e" class=""><strong>보드 API 개발</strong></p><ul id="c855e45f-36e7-4364-a1fa-d7f3aaf62ec7" class="bulleted-list"><li style="list-style-type:disc">프로젝트 내의 보드 CRUD API를 개발</li></ul><ul id="1523b2c5-48ec-80cf-8f5c-dabb720fe668" class="bulleted-list"><li style="list-style-type:disc">개인의 보드와 타인의 보드에 접근하고, 수정하는 인가 권한 설정 진행</li></ul><p id="1523b2c5-48ec-8067-bf3b-d64cd942029f" class="">
+</p><p id="1523b2c5-48ec-80e0-886a-d54aa02f3a5d" class=""><strong>댓글 API 개발</strong></p><ul id="1523b2c5-48ec-80f5-9e78-ebe9838b8a52" class="bulleted-list"><li style="list-style-type:disc">보드 내부 댓글 CRUD API 개발</li></ul><p id="1523b2c5-48ec-8016-8cec-c5299e92ed51" class="">
+</p><p id="1523b2c5-48ec-8041-bed8-ee18896a9e75" class=""><strong>알림  API 개발</strong></p><ul id="1523b2c5-48ec-8065-a73e-cce77b18fbb4" class="bulleted-list"><li style="list-style-type:disc">알림의 생성 API 개발 및 프로젝트 초대, 보드 생성, 멘션, 댓글 등의 기능에 알림 생성 연결</li></ul><p id="322d57a6-57a3-46b2-a43b-9a934c660278" class="">
+</p><p id="af7b981b-3a1b-4cc1-970f-b511f830b646" class=""><strong>배포 진행</strong></p><ul id="501b3c90-edcd-43c1-911d-256bb94dc29b" class="bulleted-list"><li style="list-style-type:disc">AWS의 EC2와 Docker를 사용한 무중단 배포 진행</li></ul><ul id="1523b2c5-48ec-80cd-a6df-e4fffbec8b74" class="bulleted-list"><li style="list-style-type:disc">도메인 연결 및 https 인증 설정</li></ul><ul id="1903b2c5-48ec-80e9-af9a-e23134fbbc11" class="bulleted-list"><li style="list-style-type:disc">git action으로 CI/CD 설정</li></ul><p id="1a8555e9-9efa-4ee6-856e-bc319421add1" class="">
+</p><h3 id="437cacfe-900f-4289-83e5-644f0d649175" class="">🚨 트러블 슈팅</h3><p id="1b9236bb-d0b6-46af-b4c5-a1c0fd42c61d" class="">🔥 <strong>문제 배경</strong></p><ol type="1" id="72370bfe-1b49-4b6e-b8ef-949c579c8a49" class="numbered-list" start="1"><li>API 설계 과정에서 인가권한에 대한 기획이 존재하지 않아서 테스트하는 과정에서 예기치 않은 오류들이 존재했다.</li></ol><ol type="1" id="e35ece90-ca5b-4d0b-a199-7e7be508b62e" class="numbered-list" start="2"><li>알림의 경우 실시간으로 통신이 이루어지길 원했지만, 실시간으로 이루어지지 않고, 재렌더링을 진행했을때 알림이 보여짐</li></ol><ol type="1" id="1523b2c5-48ec-80da-972e-dfc5a8ce8bcc" class="numbered-list" start="3"><li>배포 과정에서 무중단 배포로 진행했지만 계속해서 연결이 끊어짐</li></ol><p id="0f96395e-640f-4dd9-af07-c258ff63f61c" class="">
+</p><p id="75373109-0f7a-4ce2-9829-b715f31a7183" class="">⭐ <strong>해결방법</strong></p><ol type="1" id="b476a801-3da0-43fa-bd5c-6e12cb909d58" class="numbered-list" start="1"><li>API 연결 과정에서 기획에 없던 인가권한에 대한 부분을 상세하게 설정해서 동작의 오류를 수정했습니다.</li></ol><ol type="1" id="9386c135-97c4-4829-9fd1-9e7fa40bc4aa" class="numbered-list" start="2"><li>알림의 경우 socket, 혹은 SSE 방식이 있다는 것을 알게되었지만, 빠른 결과물의 도출과 시간상의 이유로 실시간 알림 통신을 구현하지 못하고, react-query로 알림 api를 자체적으로 10초마다 호출해 적용되도록 설정했습니다.</li></ol><ol type="1" id="1523b2c5-48ec-802a-9c47-ffb3f6f62b94" class="numbered-list" start="3"><li>배포과정에서 서버의 용량 문제로 도커내부 포트의 변경으로 무중단을 실행하려했지만, 용량의 문제로 무중단을 실행하지 못했습니다.</li></ol><p id="3948e0b9-5149-4ef6-b112-c99b5c6e7a0b" class="">
+</p></div><div id="84aff394-18ac-4be5-a343-27a392dc5b36" style="width:25%" class="column"><figure id="1523b2c5-48ec-8061-abf3-ef1d853c65c3" class="image"><a href="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image.png"><img style="width:288px" src="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image.png"/></a></figure><p id="1523b2c5-48ec-8056-b9ec-dc5ffa985262" class=""><mark class="highlight-gray"><strong>프로젝트 생성</strong></mark></p><figure id="1523b2c5-48ec-8001-8e55-d621179b5c39" class="image"><a href="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%201.png"><img style="width:331px" src="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%201.png"/></a></figure><p id="1523b2c5-48ec-8004-a13a-fe612aca946f" class=""><mark class="highlight-gray"><strong>팀원 초대</strong></mark></p><figure id="1523b2c5-48ec-8076-bdb7-df1fee467d01" class="image"><a href="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%202.png"><img style="width:3840px" src="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%202.png"/></a></figure><p id="1523b2c5-48ec-8086-ae45-f94f7fb5a038" class=""><mark class="highlight-gray"><strong>보드 페이지 개발</strong></mark></p><figure id="1523b2c5-48ec-8046-a0d5-e07b87bdb8a0" class="image"><a href="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%203.png"><img style="width:3840px" src="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%203.png"/></a></figure><p id="1523b2c5-48ec-8044-9c66-fe8f37600f99" class=""><mark class="highlight-gray"><strong>팀원 초대 수락/거절 기능</strong></mark></p><p id="1903b2c5-48ec-8055-bebd-d243325e03f8" class="">
+</p><p id="1903b2c5-48ec-8037-9b96-d8144eba5966" class="">
+</p><p id="1903b2c5-48ec-80e8-96f5-cc29f9bb2e69" class="">
+</p></div><div id="1903b2c5-48ec-8029-84e1-e369ebf7549a" style="width:25.00000000000002%" class="column"><figure id="1523b2c5-48ec-8049-bb5b-e651acc02f3a" class="image"><a href="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%204.png"><img style="width:331px" src="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%204.png"/></a></figure><p id="1523b2c5-48ec-800b-98dd-e998febfbfdc" class=""><mark class="highlight-gray"><strong>개인 프로젝트 화면</strong></mark></p><figure id="1523b2c5-48ec-8085-8b57-df41191c0c9d" class="image"><a href="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%205.png"><img style="width:546px" src="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%205.png"/></a></figure><p id="1523b2c5-48ec-808f-8403-f29a2c046d22" class=""><mark class="highlight-gray"><strong>개인 및 팀 일정 페이지</strong></mark></p><p id="1903b2c5-48ec-8042-a8ca-d3dc3d4ce6ab" class="">
+</p><figure id="1523b2c5-48ec-8008-ad1c-eaadaf1e77ed" class="image"><a href="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%206.png"><img style="width:331px" src="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%206.png"/></a></figure><p id="1523b2c5-48ec-8040-90ef-d7bd1bdd9099" class=""><mark class="highlight-gray"><strong>댓글 페이지</strong></mark></p><figure id="1523b2c5-48ec-8092-b043-c4f8e8035901" class="image"><a href="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%207.png"><img style="width:331px" src="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/image%207.png"/></a></figure><p id="1523b2c5-48ec-80bc-a8ef-f89f6bcd8259" class=""><mark class="highlight-gray"><strong>알림 기능</strong></mark></p></div></div><h2 id="1903b2c5-48ec-802e-8ef3-e7b5a59aaf42" class="">시연동작</h2><p id="1903b2c5-48ec-80ea-9f4b-f87c21ecad77" class="">
+</p><figure id="1903b2c5-48ec-8080-8fed-dc2aa5a69435"><div class="source"><a href="%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4(TodayScrum)%2014d3b2c548ec80849208c8ce59776181/%E1%84%8B%E1%85%A9%E1%84%82%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B4%E1%84%92%E1%85%AC%E1%84%8B%E1%85%B4_%E1%84%83%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%A1%E1%86%A8.mp4">오늘의 회의 동작</a></div></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
