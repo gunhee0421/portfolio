@@ -72,7 +72,7 @@ export const SkillSection = () => {
     >
       <section
         id="skill"
-        className="h-screen py-[50px] sm:py-[20dvh] overflow-y-hidden"
+        className="h-screen py-[50px] sm:py-[15dvh] overflow-y-hidden"
       >
         <div className="flex flex-col h-full text-white">
           <motion.div
@@ -82,10 +82,37 @@ export const SkillSection = () => {
             transition={{ duration: 0.8 }}
           >
             <SectionTitle title="Skill" />
+            <motion.nav
+              className="w-fit lg:hidden font-toss font-semibold relative"
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.div
+                className={`absolute left-0 bottom-0 md:bottom-2 w-1/2 h-[2px] md:h-1 bg-primary transition-transform duration-500`}
+                style={{ transform: `translateX(calc(${index} * 100%))` }}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              ></motion.div>
+              <div className="flex flex-row gap-6 text-sm md:text-2xl items-start my-1">
+                <button
+                  className={`hover:text-primary relative hover:cursor-pointer transition-colors duration-300`}
+                  onClick={() => handleIndexChange(0)}
+                >
+                  Front End
+                </button>
+                <button
+                  className={`hover:text-primary relative hover:cursor-pointer transition-colors duration-300`}
+                  onClick={() => handleIndexChange(1)}
+                >
+                  Back End
+                </button>
+              </div>
+            </motion.nav>
           </motion.div>
 
           <div className="flex flex-row justify-between h-full w-full">
-            {/* 왼쪽 내비게이션 */}
             <motion.nav
               className="hidden w-fit lg:flex flex-col items-start font-toss md:text-2xl xl:text-3xl 2xl:text-4xl font-semibold relative"
               initial={{ opacity: 0, y: 50 }}
@@ -119,7 +146,7 @@ export const SkillSection = () => {
               key={index}
               className="w-full ld:w-[80%] text-sm md:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl flex flex-col gap-12 relative"
               initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               {index === 0 ? (
