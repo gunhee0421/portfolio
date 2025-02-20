@@ -73,15 +73,15 @@ const IntroSection = () => {
         </h1>
         <button
           onClick={startTyping}
-          className={`text-[8px] sm:text-sm md:text-lg px-2 py-1 rounded-sm lg:px-6 lg:py-3 bg-zinc-50 text-black hover:bg-primary font-bold lg:rounded-lg hover:bg-primary-dark transition duration-300 animate-blink ${
-            showRestartButton ? 'block' : 'hidden'
+          className={`text-[8px] sm:text-sm md:text-lg px-2 py-1 rounded-sm lg:px-6 lg:py-3 bg-zinc-50 text-black hover:bg-primary font-bold lg:rounded-lg hover:bg-primary-dark transition duration-300  ${
+            showRestartButton ? 'opacity-100 animate-blink' : 'opacity-0'
           }`}
         >
           다시 보기
         </button>
         <a
           href="#profile"
-          className={`${showRestartButton ? 'block' : 'hidden'} absolute bottom-[10vh]`}
+          className={`${showRestartButton ? 'opacity-100' : 'opacity-0'} transition duration-300 absolute bottom-[10vh]`}
         >
           <ChevronsDown
             size={80}

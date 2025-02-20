@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { AlignJustify } from 'lucide-react'
 import { motion, Variants } from 'framer-motion'
 
