@@ -126,15 +126,7 @@ export const Header = () => {
                       activeSection === id ? 'text-black' : 'text-primary'
                     } hover:text-black transition-colors duration-500`}
                   >
-                    <span
-                      className={
-                        activeSection === 'project'
-                          ? 'text-white'
-                          : 'text-black'
-                      }
-                    >
-                      {number}.{' '}
-                    </span>
+                    <span>{number}. </span>
                     {label}
                   </a>
                 </motion.li>
@@ -165,18 +157,8 @@ export const Header = () => {
                   activeSection === id ? 'text-primary' : 'text-garyFont'
                 } hover:text-primary transition-colors duration-500`}
               >
-                <span
-                  className={`${
-                    activeSection === 'project' ? 'text-white' : 'text-primary'
-                  }`}
-                >
-                  {number}.{' '}
-                </span>
-                {activeSection === 'project' ? (
-                  <span className="text-garyFont">{label}</span>
-                ) : (
-                  label
-                )}
+                <span>{number}. </span>
+                {label}
               </a>
             </motion.li>
           ))}
