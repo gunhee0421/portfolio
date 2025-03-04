@@ -150,69 +150,47 @@ export const SkillSection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               {index === 0 ? (
-                <div className="w-full h-full pt-4 lg:pt-0 flex flex-col justify-around">
-                  <ol className="flex flex-row justify-around">
-                    <SkillComponent image="html" title="HTML" percent={70} />
-                    <SkillComponent image="css" title="CSS" percent={80} />
-                    <SkillComponent
-                      image="js"
-                      title="JavaScript"
-                      percent={90}
-                    />
-                  </ol>
-                  <ol className="flex flex-row justify-between">
-                    <SkillComponent image="react" title="React" percent={90} />
-                    <SkillComponent image="next" title="Next" percent={80} />
-                  </ol>
-                  <ol className="flex flex-row justify-between">
-                    <SkillComponent
-                      image="styled"
-                      title="Styled-Component"
-                      percent={80}
-                    />
-                    <SkillComponent
-                      image="tailwind"
-                      title="TailWind"
-                      percent={90}
-                    />
-                  </ol>
+                <div className="w-full h-full pt-4 lg:pt-0 grid grid-cols-3 gap-4">
+                  <SkillComponent image="html" title="HTML" percent={70} />
+                  <SkillComponent image="css" title="CSS" percent={80} />
+                  <SkillComponent image="js" title="JavaScript" percent={90} />
+                  <SkillComponent image="react" title="React" percent={90} />
+                  <SkillComponent image="next" title="Next" percent={80} />
+                  <br />
+                  <SkillComponent
+                    image="styled"
+                    title="Styled-Component"
+                    percent={80}
+                  />
+                  <SkillComponent
+                    image="tailwind"
+                    title="TailWind"
+                    percent={90}
+                  />
                 </div>
               ) : (
-                <div className="w-full h-full pt-4 lg:pt-0 flex flex-col justify-between">
-                  <ol className="flex flex-row justify-between">
-                    <SkillComponent
-                      image="spring"
-                      title="Spring Boot"
-                      percent={60}
-                    />
-                    <SkillComponent image="node" title="Node.js" percent={45} />
-                    <SkillComponent
-                      image="express"
-                      title="Express"
-                      percent={45}
-                    />
-                  </ol>
-                  <ol className="flex flex-row justify-between">
-                    <SkillComponent image="aws" title="AWS" percent={70} />
-                    <SkillComponent
-                      image="docker"
-                      title="Docker"
-                      percent={60}
-                    />
-                  </ol>
-                  <ol className="flex flex-row justify-between">
-                    <SkillComponent image="mysql" title="MySQL" percent={70} />
-                    <SkillComponent
-                      image="postgresql"
-                      title="PostgreSQL"
-                      percent={40}
-                    />
-                    <SkillComponent
-                      image="prisma"
-                      title="Prisma"
-                      percent={45}
-                    />
-                  </ol>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+                  <SkillComponent
+                    image="spring"
+                    title="Spring Boot"
+                    percent={60}
+                  />
+                  <SkillComponent image="node" title="Node.js" percent={45} />
+                  <SkillComponent
+                    image="express"
+                    title="Express"
+                    percent={45}
+                  />
+                  <SkillComponent image="aws" title="AWS" percent={70} />
+                  <SkillComponent image="docker" title="Docker" percent={60} />
+                  <br />
+                  <SkillComponent image="mysql" title="MySQL" percent={70} />
+                  <SkillComponent
+                    image="postgresql"
+                    title="PostgreSQL"
+                    percent={40}
+                  />
+                  <SkillComponent image="prisma" title="Prisma" percent={45} />
                 </div>
               )}
             </motion.div>
