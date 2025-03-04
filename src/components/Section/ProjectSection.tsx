@@ -4,8 +4,7 @@ import Jinlo from '../Project/Jinlo'
 import Ladi from '../Project/Ladi'
 import TodayClothes from '../Project/TodayClothes'
 import TodayScrum from '../Project/TodayScrum'
-import { SectionTitle } from '../ui/Title'
-import { Card } from '../ui/Card/Card'
+import { Card, CardContent } from '../ui/card'
 
 export const PROJECTS = [
   { component: <Jinlo />, color: 'bg-[#00C369]', id: 'jinlo' },
@@ -62,6 +61,11 @@ const ProjectSection = () => {
                   </button>
                 ))}
               </div>
+            </div>
+            <div>
+              <Card>
+                <CardContent>hellow</CardContent>
+              </Card>
             </div>
           </section>
         </div>
