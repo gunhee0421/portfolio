@@ -1,6 +1,5 @@
 import { CardData } from '@/components/Project/Project'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect } from 'react'
 
 interface ProjectModalProps {
   isOpen: boolean
@@ -9,18 +8,6 @@ interface ProjectModalProps {
 }
 
 const ProjectModal = ({ isOpen, onClose, data }: ProjectModalProps) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.documentElement.style.overflow = 'hidden'
-    } else {
-      document.documentElement.style.overflow = 'unset'
-    }
-
-    return () => {
-      document.documentElement.style.overflow = 'unset'
-    }
-  }, [isOpen])
-
   return (
     <AnimatePresence>
       {isOpen && (

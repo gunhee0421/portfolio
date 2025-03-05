@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect } from 'react'
 
 interface ModalProps {
   isOpen: boolean
@@ -8,18 +7,6 @@ interface ModalProps {
 }
 
 const ImageModal = ({ isOpen, onClose, children }: ModalProps) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isOpen])
-
   return (
     <AnimatePresence>
       {isOpen && (
