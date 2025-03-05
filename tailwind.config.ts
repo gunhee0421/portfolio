@@ -20,6 +20,7 @@ export default {
         garyFont: 'rgb(107 114 128 / var(--tw-text-opacity, 1))',
         primary: '#39FF14',
         bgBlack: '#000000D9',
+        bgGray: '#4a4a4a8f',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

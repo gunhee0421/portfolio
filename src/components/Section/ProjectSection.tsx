@@ -4,7 +4,8 @@ import Jinlo from '../Project/Jinlo'
 import Ladi from '../Project/Ladi'
 import TodayClothes from '../Project/TodayClothes'
 import TodayScrum from '../Project/TodayScrum'
-import { Card, CardContent } from '../ui/card'
+import { SectionTitle } from '../ui/Title'
+import { CustomCard } from '../ui/Card/card'
 
 export const PROJECTS = [
   { component: <Jinlo />, color: 'bg-[#00C369]', id: 'jinlo' },
@@ -15,7 +16,14 @@ export const PROJECTS = [
 ]
 
 const ProjectSection = () => {
-  const [selected, setSelected] = useState('all')
+  const [selected, setSelected] = useState('All')
+
+  const cardData = {
+    title: 'Awesome App',
+    description: 'This is a great app that does amazing things.',
+    imageUrl: '/images/sample.jpg',
+    tags: ['앱', '테크', '스타트업'],
+  }
 
   return (
     <article
@@ -48,24 +56,27 @@ const ProjectSection = () => {
         <div className="hidden lg:block px-8 sm:px-[4rem] md:px-[4rem] lg:px-[5rem] xl:px-[7rem] 2xl:px-[15rem]">
           <section className="h-screen py-[50px] sm:py-[12dvh] flex flex-col w-full text-white relative">
             <div className="flex justify-between items-center">
-              <h2 className="text-3xl font-bold">Projects</h2>
-              <div className="flex gap-4">
-                {['all', 'team', 'single'].map((type) => (
+              <SectionTitle title="Projects" />
+              <div className="flex gap-4 rounded-full px-2 py-1 bg-bgGray">
+                {['All', 'team', 'Single'].map((type) => (
                   <button
                     key={type}
                     onClick={() => setSelected(type)}
-                    className={`w-12 h-12 flex items-center justify-center rounded-full text-lg font-medium transition-colors 
-                  ${selected === type ? 'bg-white text-black' : 'bg-black text-white border border-white'}`}
+                    className={`w-16 h-12 flex items-center justify-center rounded-[75px] text-lg transition-colors 
+                  ${selected === type ? 'bg-white text-black font-bold' : 'font-medium'}`}
                   >
                     {type.charAt(0).toUpperCase() + type.slice(1)}
                   </button>
                 ))}
               </div>
             </div>
-            <div>
-              <Card>
-                <CardContent>hellow</CardContent>
-              </Card>
+            <div className="h-[calc(100%-2rem)] grid lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+              <CustomCard data={cardData} />
+              <CustomCard data={cardData} />
+              <CustomCard data={cardData} />
+              <CustomCard data={cardData} />
+              <CustomCard data={cardData} />
+              <CustomCard data={cardData} />
             </div>
           </section>
         </div>
