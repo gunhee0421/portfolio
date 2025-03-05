@@ -53,7 +53,7 @@ const ProjectSection = () => {
             </div>
             <div className="h-[calc(100%-2rem)] grid lg:grid-rows-3 lg:grid-cols-3 xl:grid-cols-4 xl:grid-rows-2 gap-4 mt-8">
               {PROJECTS.map((project) => (
-                <CustomCard key={project.id} data={project.data} />
+                <CustomCard key={project.id} data={project} />
               ))}
             </div>
           </section>
