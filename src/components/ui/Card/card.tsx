@@ -11,6 +11,7 @@ import {
 import useModal from '@/hook/useModal'
 import ProjectModal from '@/components/ui/Modal/modal'
 import { CardData } from '@/components/Project/Project'
+import { useMediaQuery } from 'react-responsive'
 
 export type CustomCardProps = {
   data: CardData
@@ -21,18 +22,20 @@ export const CustomCard: React.FC<CustomCardProps> = ({ data }) => {
   const [isHovered, setIsHovered] = useState(false)
   const { isOpen, openModal, closeModal } = useModal()
 
+  const isLg = useMediaQuery({ minWidth: 1024 })
+
   return (
     <>
       <Card
         className={`w-full h-full overflow-hidden flex flex-col relative transition-all duration-300 ${
           isHovered ? 'shadow-2xl -translate-y-1' : 'shadow-md'
         }`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => isLg && setIsHovered(true)}
+        onMouseLeave={() => isLg && setIsHovered(false)}
       >
         {imageUrl && (
           <div
-            className={`relative w-full h-48 ${isHovered ? 'hidden' : 'block'}`}
+            className={`relative w-full h-48 ${isHovered && isLg ? 'hidden' : 'block'}`}
           >
             <Image
               src={imageUrl}
@@ -46,7 +49,7 @@ export const CustomCard: React.FC<CustomCardProps> = ({ data }) => {
         <div className="flex flex-col flex-grow relative">
           <CardHeader
             className={`absolute inset-0 flex flex-col items-center justify-center ${
-              isHovered ? 'opacity-100' : 'opacity-0'
+              isHovered && isLg ? 'opacity-100' : 'opacity-0'
             }`}
           >
             <CardTitle className="text-white text-2xl">{title}</CardTitle>
