@@ -17,13 +17,7 @@ const IntroSection = () => {
   const [displayText, setDisplayText] = useState('')
   const [isTyping, setIsTyping] = useState(true)
   const [showRestartButton, setShowRestartButton] = useState(false)
-
-  const startTyping = () => {
-    setShowRestartButton(false)
-    setCurrentSentenceIndex(0)
-    setDisplayText('')
-    setIsTyping(true)
-  }
+  const [isScrollEnabled, setIsScrollEnabled] = useState(false)
 
   useEffect(() => {
     if (!isTyping) return
@@ -41,6 +35,7 @@ const IntroSection = () => {
           if (currentSentenceIndex === sentences.length - 1) {
             setIsTyping(false)
             setShowRestartButton(true)
+            setIsScrollEnabled(true) // 타이핑이 끝나면 스크롤 활성화
           } else {
             setDisplayText('')
             setCurrentSentenceIndex(currentSentenceIndex + 1)
@@ -50,6 +45,14 @@ const IntroSection = () => {
     }
     type()
   }, [currentSentenceIndex, isTyping])
+
+  useEffect(() => {
+    if (!isScrollEnabled) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isScrollEnabled])
 
   const getLinesWithEffect = (text: string) => {
     const lines = text.split('\n')
@@ -72,16 +75,22 @@ const IntroSection = () => {
           {getLinesWithEffect(displayText)}
         </h1>
         <button
-          onClick={startTyping}
-          className={`text-[8px] sm:text-sm md:text-lg px-2 py-1 rounded-sm lg:px-6 lg:py-3 bg-zinc-50 text-black hover:bg-primary font-bold lg:rounded-lg hover:bg-primary-dark transition duration-300 animate-blink ${
-            showRestartButton ? 'block' : 'hidden'
+          onClick={() => {
+            setCurrentSentenceIndex(0)
+            setDisplayText('')
+            setIsTyping(true)
+            setShowRestartButton(false)
+            setIsScrollEnabled(false) // 다시 시작할 때 스크롤 비활성화
+          }}
+          className={`text-[8px] sm:text-sm md:text-lg px-2 py-1 rounded-sm lg:px-6 lg:py-3 bg-zinc-50 text-black hover:bg-primary font-bold lg:rounded-lg hover:bg-primary-dark transition duration-300  ${
+            showRestartButton ? 'opacity-100' : 'opacity-0'
           }`}
         >
           다시 보기
         </button>
         <a
           href="#profile"
-          className={`${showRestartButton ? 'block' : 'hidden'} absolute bottom-[10vh]`}
+          className={`${showRestartButton ? 'opacity-100' : 'opacity-0'} transition duration-300 absolute bottom-[10vh]`}
         >
           <ChevronsDown
             size={80}
