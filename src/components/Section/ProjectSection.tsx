@@ -1,10 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SectionTitle } from '../ui/Title'
 import { CustomCard } from '../ui/Card/card'
 import PROJECTS from '../Project/Project'
 
 const ProjectSection = () => {
   const [selected, setSelected] = useState('All')
+  const [projects, setProjects] = useState(PROJECTS)
+
+  useEffect(() => {
+    if (selected === 'All') {
+      setProjects(PROJECTS)
+    } else if (selected === 'Team') {
+      setProjects(PROJECTS.filter((project) => project.team === true))
+    } else if (selected === 'Single') {
+      setProjects(PROJECTS.filter((project) => project.team === false))
+    }
+  }, [selected])
 
   return (
     <article
@@ -39,7 +50,7 @@ const ProjectSection = () => {
             <div className="flex justify-between items-center">
               <SectionTitle title="Projects" />
               <div className="flex gap-4 rounded-full px-2 py-1 bg-bgGray">
-                {['All', 'team', 'Single'].map((type) => (
+                {['All', 'Team', 'Single'].map((type) => (
                   <button
                     key={type}
                     onClick={() => setSelected(type)}
@@ -52,7 +63,7 @@ const ProjectSection = () => {
               </div>
             </div>
             <div className="h-[calc(100%-2rem)] grid lg:grid-rows-3 lg:grid-cols-3 xl:grid-cols-4 xl:grid-rows-2 gap-4 mt-8">
-              {PROJECTS.map((project) => (
+              {projects.map((project) => (
                 <CustomCard key={project.id} data={project} />
               ))}
             </div>

@@ -1,4 +1,4 @@
-import React, { JSX, useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import {
   Card,
@@ -10,16 +10,7 @@ import {
 } from '@/components/ui/card'
 import useModal from '@/hook/useModal'
 import ProjectModal from '@/components/ui/Modal/modal'
-
-export type CardData = {
-  id: string
-  title: string
-  color: string
-  description?: string
-  imageUrl?: string
-  tags?: string[]
-  component: JSX.Element
-}
+import { CardData } from '@/components/Project/Project'
 
 export type CustomCardProps = {
   data: CardData

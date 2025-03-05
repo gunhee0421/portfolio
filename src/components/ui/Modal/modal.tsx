@@ -1,5 +1,5 @@
+import { CardData } from '@/components/Project/Project'
 import { AnimatePresence, motion } from 'framer-motion'
-import { CardData } from '../Card/card'
 import { useEffect } from 'react'
 
 interface ProjectModalProps {
