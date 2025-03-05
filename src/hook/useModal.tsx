@@ -24,8 +24,6 @@ const useModal = (): UseModalReturn => {
   }, [])
 
   useEffect(() => {
-    console.log(isOpen)
-
     if (prevIsOpen.current === isOpen) return
 
     if (isOpen) {
