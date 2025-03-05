@@ -1,5 +1,6 @@
 import { CardData } from '@/components/Project/Project'
 import { AnimatePresence, motion } from 'framer-motion'
+import { X } from 'lucide-react'
 
 interface ProjectModalProps {
   isOpen: boolean
@@ -7,7 +8,7 @@ interface ProjectModalProps {
   data: CardData
 }
 
-const ProjectModal = ({ isOpen, onClose, data }: ProjectModalProps) => {
+export const ProjectModal = ({ isOpen, onClose, data }: ProjectModalProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -57,4 +58,33 @@ const ProjectModal = ({ isOpen, onClose, data }: ProjectModalProps) => {
   )
 }
 
-export default ProjectModal
+export const ProjectMobileModal = ({
+  isOpen,
+  onClose,
+  data,
+}: ProjectModalProps) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          <motion.div
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-lg p-6 z-50 shadow-lg bg-[#4a4a4a] lg:h-auto lg:max-w-3xl"
+            initial={{ scale: 0.8, opacity: 0, x: '-50%', y: '-50%' }}
+            animate={{ scale: 1, opacity: 1, x: '-50%', y: '-50%' }}
+            exit={{ scale: 0.8, opacity: 0, x: '-50%', y: '-50%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+          >
+            <div className="lg:hidden absolute top-0 left-0 w-full h-[50px flex items-center px-4 py-2">
+              <button onClick={onClose} className="ml-auto text-white">
+                <X size={24} />
+              </button>
+            </div>
+            <div className="w-full h-full lg:h-auto pt-[25px] lg:pt-0 flex flex-col">
+              {data.component}
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  )
+}

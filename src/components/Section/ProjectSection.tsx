@@ -22,7 +22,7 @@ const ProjectSection = () => {
       id="project"
       className={`h-full transition-colors duration-400 ease-in-out`}
     >
-      <div className="lg:hidden">
+      <div className="lg:hidden text-white">
         <div className={`block px-8 sm:px-[4rem] md:px-[4rem] lg:hidden`}>
           <div className="flex justify-between items-center">
             <SectionTitle title="Projects" />

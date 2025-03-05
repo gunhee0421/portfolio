@@ -9,7 +9,7 @@ import {
   CardFooter,
 } from '@/components/ui/card'
 import useModal from '@/hook/useModal'
-import ProjectModal from '@/components/ui/Modal/modal'
+import { ProjectMobileModal, ProjectModal } from '@/components/ui/Modal/modal'
 import { CardData } from '@/components/Project/Project'
 import { useMediaQuery } from 'react-responsive'
 
@@ -87,7 +87,11 @@ export const CustomCard: React.FC<CustomCardProps> = ({ data }) => {
           </CardFooter>
         )}
       </Card>
-      <ProjectModal isOpen={isOpen} onClose={closeModal} data={data} />
+      {isLg ? (
+        <ProjectModal isOpen={isOpen} onClose={closeModal} data={data} />
+      ) : (
+        <ProjectMobileModal isOpen={isOpen} onClose={closeModal} data={data} />
+      )}
     </>
   )
 }

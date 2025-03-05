@@ -26,7 +26,7 @@ const TodayClothes = () => {
             오늘의 옷장
           </h1>
         </Link>
-        <ol className="grid grid-cols-2 w-full lg:flex lg:flex-row lg:justify-between pt-4">
+        <ol className="grid grid-cols-2 gap-4 w-full lg:flex lg:flex-row lg:justify-between pt-4">
           <li>
             <TitleLabel title="플랫폼" />
             <ContentLabel>웹/앱</ContentLabel>
