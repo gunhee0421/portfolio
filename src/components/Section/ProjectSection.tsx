@@ -1,29 +1,10 @@
 import { useState } from 'react'
-import GDG from '../Project/Gdg'
-import Jinlo from '../Project/Jinlo'
-import Ladi from '../Project/Ladi'
-import TodayClothes from '../Project/TodayClothes'
-import TodayScrum from '../Project/TodayScrum'
 import { SectionTitle } from '../ui/Title'
 import { CustomCard } from '../ui/Card/card'
-
-export const PROJECTS = [
-  { component: <Jinlo />, color: 'bg-[#00C369]', id: 'jinlo' },
-  { component: <GDG />, color: 'bg-[#9097C0]', id: 'gdg' },
-  { component: <Ladi />, color: 'bg-[#1666DB]', id: 'ladi' },
-  { component: <TodayClothes />, color: 'bg-[#f47272]', id: 'todayclothes' },
-  { component: <TodayScrum />, color: 'bg-[#d167f5]', id: 'todayscrum' },
-]
+import PROJECTS from '../Project/Project'
 
 const ProjectSection = () => {
   const [selected, setSelected] = useState('All')
-
-  const cardData = {
-    title: 'Awesome App',
-    description: 'This is a great app that does amazing things.',
-    imageUrl: '/images/sample.jpg',
-    tags: ['앱', '테크', '스타트업'],
-  }
 
   return (
     <article
@@ -70,13 +51,10 @@ const ProjectSection = () => {
                 ))}
               </div>
             </div>
-            <div className="h-[calc(100%-2rem)] grid lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
-              <CustomCard data={cardData} />
-              <CustomCard data={cardData} />
-              <CustomCard data={cardData} />
-              <CustomCard data={cardData} />
-              <CustomCard data={cardData} />
-              <CustomCard data={cardData} />
+            <div className="h-[calc(100%-2rem)] grid lg:grid-rows-3 lg:grid-cols-3 xl:grid-cols-4 xl:grid-rows-2 gap-4 mt-8">
+              {PROJECTS.map((project) => (
+                <CustomCard key={project.id} data={project.data} />
+              ))}
             </div>
           </section>
         </div>

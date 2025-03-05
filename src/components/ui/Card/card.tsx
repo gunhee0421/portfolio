@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import {
   Card,
@@ -26,7 +26,7 @@ export const CustomCard: React.FC<CustomCardProps> = ({ data }) => {
 
   return (
     <Card
-      className={`w-full overflow-hidden flex flex-col relative transition-all duration-300 ${
+      className={`w-full h-full overflow-hidden flex flex-col relative transition-all duration-300 ${
         isHovered ? 'shadow-2xl -translate-y-1' : 'shadow-md'
       }`}
       onMouseEnter={() => setIsHovered(true)}

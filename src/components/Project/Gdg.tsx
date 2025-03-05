@@ -136,15 +136,6 @@ const GDG = () => {
               </span>
             </button>
           </Link>
-          {/* 노션 iframe 안될 시 링크 */}
-          {/* <Link
-            className="w-full h-12"
-            href="https://jet-captain-13f.notion.site/17a3b2c548ec8031addcea0cb4537bff?pvs=74"
-          >
-            <button className="w-full h-full border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">
-              자세히 보기
-            </button>
-          </Link> */}
           <button
             onClick={() => openModalNotion()}
             className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black"
