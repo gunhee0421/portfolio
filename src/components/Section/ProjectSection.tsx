@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { SectionTitle } from '../ui/Title'
 import { CustomCard } from '../ui/Card/card'
 import PROJECTS from '../Project/Project'
-import Link from 'next/link'
 
 const ProjectSection = () => {
   const [selected, setSelected] = useState('All')
@@ -41,10 +40,8 @@ const ProjectSection = () => {
             </div>
           </div>
           <div className="h-[calc(100%-2rem)] grid grid-cols-1 gap-4 my-4">
-            {projects.map((project, idx) => (
-              <Link href={`${project.id}`} key={idx}>
-                <CustomCard key={project.id} data={project} />
-              </Link>
+            {projects.map((project) => (
+              <CustomCard key={project.id} data={project} />
             ))}
           </div>
         </div>
@@ -67,7 +64,7 @@ const ProjectSection = () => {
                 ))}
               </div>
             </div>
-            <div className="h-[calc(100%-2rem)] grid lg:grid-rows-3 lg:grid-cols-3 xl:grid-cols-4 xl:grid-rows-2 gap-4 mt-8">
+            <div className="h-[calc(100%-2rem)] grid lg:grid-cols-3 xl:grid-cols-4 grid-rows-2 gap-4 mt-8">
               {projects.map((project) => (
                 <CustomCard key={project.id} data={project} />
               ))}

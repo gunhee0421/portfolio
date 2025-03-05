@@ -32,6 +32,7 @@ export const CustomCard: React.FC<CustomCardProps> = ({ data }) => {
         }`}
         onMouseEnter={() => isLg && setIsHovered(true)}
         onMouseLeave={() => isLg && setIsHovered(false)}
+        onClick={() => !isLg && openModal()}
       >
         {imageUrl && (
           <div
