@@ -5,18 +5,11 @@ import { TitleLabel, ContentLabel } from '../ui/Lable'
 import useModal from '@/hook/useModal'
 import ImageModal from '../ui/Modal/ImageModal'
 import { useState } from 'react'
-import NotionModal from '../ui/Modal/NotionModal'
 import Link from 'next/link'
 
 const TodayClothes = () => {
   const { isOpen, openModal, closeModal } = useModal()
   const [selectedImage, setSelectedImage] = useState<string>('')
-
-  const {
-    isOpen: isOpenNotion,
-    openModal: openModalNotion,
-    closeModal: closeModalNotion,
-  } = useModal()
 
   return (
     <div className="w-full flex flex-row lg:justify-around h-[70dvh] font-toss">
@@ -26,7 +19,7 @@ const TodayClothes = () => {
             오늘의 옷장
           </h1>
         </Link>
-        <ol className="grid grid-cols-2 w-full lg:flex lg:flex-row lg:justify-between pt-4">
+        <ol className="grid grid-cols-2 gap-4 w-full lg:flex lg:flex-row lg:justify-between pt-4">
           <li>
             <TitleLabel title="플랫폼" />
             <ContentLabel>웹/앱</ContentLabel>
@@ -140,17 +133,17 @@ const TodayClothes = () => {
               AWS 사용 만료로 종료되었습니다.
             </span>
           </button>
-          <button
-            onClick={() => openModalNotion()}
-            className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black"
+          <Link
+            className="w-full"
+            href={
+              'https://jet-captain-13f.notion.site/TodayClothes-1473b2c548ec804d9b05f53b1756a189'
+            }
+            target="_blank"
           >
-            자세히 보기
-          </button>
-          <NotionModal
-            isOpen={isOpenNotion}
-            onClose={closeModalNotion}
-            notionUrl="/notions/todayclothes/오늘 뭐입지 (TodayClothes) 1473b2c548ec804d9b05f53b1756a189.html"
-          ></NotionModal>
+            <button className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">
+              자세히 보기
+            </button>
+          </Link>
         </div>
       </div>
       <div className="m-auto hidden lg:block bg-white brightness-75 hover:brightness-100 transition-all duration-500">
