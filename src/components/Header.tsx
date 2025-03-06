@@ -1,16 +1,62 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { AlignJustify } from 'lucide-react'
+import { motion, Variants } from 'framer-motion'
+
+const headerVariants: Variants = {
+  hidden: { opacity: 0, y: -30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
+  },
+}
+const navVariants: Variants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3,
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  },
+}
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+}
+const mobileNavVariants: Variants = {
+  hidden: { opacity: 0, y: -50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut', staggerChildren: 0.15 },
+  },
+}
+
+const mobileItemVariants: Variants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+}
+const navOption = [
+  { id: 'profile', label: 'Profile', number: '01' },
+  { id: 'about', label: 'About', number: '02' },
+  { id: 'skill', label: 'Skill', number: '03' },
+  { id: 'project', label: 'Projects', number: '04' },
+  { id: 'more', label: 'More', number: '05' },
+]
 
 export const Header = () => {
-  const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('intro')
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['intro', 'about', 'skill', 'project']
-
+      const sections = ['profile', 'intro', 'about', 'skill', 'project', 'more']
       for (const section of sections) {
         const element = document.getElementById(section)
         if (element) {
@@ -28,165 +74,64 @@ export const Header = () => {
   }, [])
 
   return (
-    <div className="flex flex-row min-w-full justify-between backdrop-blur-md items-center lg:pt-5">
+    <motion.div
+      className="flex flex-row min-w-full justify-between backdrop-blur-md items-center lg:pt-5 font-blackHanSans"
+      variants={headerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <div className="hover:cursor-pointer">
         <a href="">
-          <div className="sm:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="25"
-              viewBox="0 0 100 50"
-              fill="none"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100"
+            height="50"
+            viewBox="0 0 200 100"
+            fill="none"
+          >
+            <text
+              x="50"
+              y="60"
+              fontFamily="Arial, Helvetica, sans-serif"
+              fontSize="48"
+              fill="white"
+              fontWeight="bold"
             >
-              <rect width="100" height="50" fill="000000D9" />
-              <text
-                x="25"
-                y="35"
-                fontFamily="Arial, Helvetica, sans-serif"
-                fontSize="24"
-                fill="white"
-                fontWeight="bold"
-              >
-                <tspan fill="#39FF14">G</tspan>UN
-              </text>
-            </svg>
-          </div>
-          <div className="hidden sm:block lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="100"
-              height="50"
-              viewBox="0 0 100 50"
-              fill="none"
-            >
-              <rect width="100" height="50" fill="000000D9" />
-              <text
-                x="25"
-                y="35"
-                fontFamily="Arial, Helvetica, sans-serif"
-                fontSize="24"
-                fill="white"
-                fontWeight="bold"
-              >
-                <tspan fill="#39FF14">G</tspan>UN
-              </text>
-            </svg>
-          </div>
-          <div className="lg:block hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="100"
-              height="50"
-              viewBox="0 0 200 100"
-              fill="none"
-            >
-              <rect width="200" height="100" fill="000000D9" />
-              <text
-                x="50"
-                y="60"
-                fontFamily="Arial, Helvetica, sans-serif"
-                fontSize="48"
-                fill="white"
-                fontWeight="bold"
-              >
-                <tspan fill="#39FF14">G</tspan>UN
-              </text>
-            </svg>
-          </div>
+              <tspan fill="#39FF14">G</tspan>UN
+            </text>
+          </svg>
         </a>
       </div>
       <div className="lg:hidden pr-6 pt-1">
         {isOpen ? (
           <nav
-            className={`absolute top-0 left-0 w-[100dvw] h-[100dvh] bg-white overflow-hidden`}
+            className="absolute top-0 left-0 w-[100dvw] h-[100dvh] bg-white overflow-hidden"
+            onClick={() => setIsOpen(false)}
           >
-            <ul
+            <motion.ul
               className="flex h-full flex-col items-center justify-around pr-8 font-bold lg:text-xl"
-              onClick={() => setIsOpen(false)}
+              variants={mobileNavVariants}
+              initial="hidden"
+              animate="visible"
             >
-              <li className="w-[20dvw] h-[20dvh]">
-                <a
-                  href="#about"
-                  className={`flex justify-center h-full items-center ${
-                    activeSection === 'about' ? 'text-black' : 'text-primary'
-                  } hover:text-black transition-colors duration-500`}
+              {navOption.map(({ id, label, number }) => (
+                <motion.li
+                  key={id}
+                  className="w-[20dvw] h-[20dvh]"
+                  variants={mobileItemVariants}
                 >
-                  <span
-                    className={
-                      activeSection === 'project' ? 'text-white' : 'text-black'
-                    }
+                  <a
+                    href={`#${id}`}
+                    className={`flex justify-center h-full items-center ${
+                      activeSection === id ? 'text-black' : 'text-primary'
+                    } hover:text-black transition-colors duration-500`}
                   >
-                    01.{' '}
-                  </span>
-                  About
-                </a>
-              </li>
-              <li className="w-[20dvw] h-[20dvh]">
-                <a
-                  href="#skill"
-                  className={`flex justify-center h-full items-center ${
-                    activeSection === 'skill' ? 'text-black' : 'text-primary'
-                  } hover:text-black transition-colors duration-500`}
-                >
-                  <span
-                    className={
-                      activeSection === 'project' ? 'text-white' : 'text-black'
-                    }
-                  >
-                    02.{' '}
-                  </span>
-                  Skill
-                </a>
-              </li>
-              <li className="w-[20dvw] h-[20dvh]">
-                <a
-                  href="#project"
-                  className={`flex justify-center h-full items-center ${
-                    activeSection === 'project' ? 'text-black' : 'text-primary'
-                  } hover:text-black transition-colors duration-500`}
-                >
-                  <span
-                    className={
-                      activeSection === 'project' ? 'text-white' : 'text-black'
-                    }
-                  >
-                    03.{' '}
-                  </span>
-                  Projects
-                </a>
-              </li>
-              <li className="w-[20dvw] h-[20dvh]">
-                <a
-                  href="#contact"
-                  className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
-                >
-                  <span
-                    className={
-                      activeSection === 'project' ? 'text-white' : 'text-black'
-                    }
-                  >
-                    04.{' '}
-                  </span>
-                  Contact
-                </a>
-              </li>
-              <li className="w-[20dvw] h-[20dvh]">
-                <a
-                  href="#more"
-                  className="flex justify-center h-full items-center text-primary hover:text-black transition-colors duration-500"
-                >
-                  <span
-                    className={
-                      activeSection === 'project' ? 'text-white' : 'text-black'
-                    }
-                  >
-                    05.{' '}
-                  </span>
-                  More
-                </a>
-              </li>
-            </ul>
+                    <span>{number}. </span>
+                    {label}
+                  </a>
+                </motion.li>
+              ))}
+            </motion.ul>
           </nav>
         ) : (
           <AlignJustify
@@ -198,88 +143,27 @@ export const Header = () => {
         )}
       </div>
       <nav className="hidden lg:block pr-8">
-        <ul className="flex flex-row gap-5 pr-8 font-bold lg:text-xl">
-          <li>
-            <a
-              href="#about"
-              className={`${
-                activeSection === 'about' ? 'text-primary' : 'text-garyFont'
-              } hover:text-primary transition-colors duration-500`}
-            >
-              <span
-                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
+        <motion.ul
+          className="flex flex-row gap-5 pr-8 font-bold lg:text-xl"
+          variants={navVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {navOption.map(({ id, label, number }) => (
+            <motion.li key={id} variants={itemVariants}>
+              <a
+                href={`#${id}`}
+                className={`${
+                  activeSection === id ? 'text-primary' : 'text-garyFont'
+                } hover:text-primary transition-colors duration-500`}
               >
-                01.{' '}
-              </span>
-              {activeSection === 'project' ? (
-                <span className="text-garyFont">About</span>
-              ) : (
-                'About'
-              )}
-            </a>
-          </li>
-          <li>
-            <a
-              href="#skill"
-              className={`${
-                activeSection === 'skill' ? 'text-primary' : 'text-garyFont'
-              } hover:text-primary transition-colors duration-500`}
-            >
-              <span
-                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
-              >
-                02.{' '}
-              </span>
-              {activeSection === 'project' ? (
-                <span className="text-garyFont">Skill</span>
-              ) : (
-                'Skill'
-              )}
-            </a>
-          </li>
-          <li>
-            <a
-              href="#project"
-              className={`${
-                activeSection === 'project' ? 'text-white' : 'text-garyFont'
-              } hover:text-primary transition-colors duration-500`}
-            >
-              <span
-                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
-              >
-                03.{' '}
-              </span>
-              Projects
-            </a>
-          </li>
-          <li>
-            <a
-              href="#contact"
-              className="text-garyFont hover:text-primary transition-colors duration-500"
-            >
-              <span
-                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
-              >
-                04.{' '}
-              </span>
-              Contact
-            </a>
-          </li>
-          <li>
-            <a
-              href="#more"
-              className="text-garyFont hover:text-primary transition-colors duration-500"
-            >
-              <span
-                className={`${activeSection === 'project' ? 'text-white' : 'text-primary'}`}
-              >
-                05.{' '}
-              </span>
-              More
-            </a>
-          </li>
-        </ul>
+                <span>{number}. </span>
+                {label}
+              </a>
+            </motion.li>
+          ))}
+        </motion.ul>
       </nav>
-    </div>
+    </motion.div>
   )
 }

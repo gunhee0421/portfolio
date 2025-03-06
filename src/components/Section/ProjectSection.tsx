@@ -1,145 +1,111 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import GDG from '../Project/Gdg'
-import Jinlo from '../Project/Jinlo'
-import Ladi from '../Project/Ladi'
-import React, { SetStateAction, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { SectionTitle } from '../ui/Title'
+import { CustomCard } from '../ui/Card/card'
+import PROJECTS from '../Project/Project'
 
-export const PROJECTS = [
-  { component: <Jinlo />, color: 'bg-[#00C369]', id: 'jinlo' },
-  { component: <GDG />, color: 'bg-[#9097C0]', id: 'gdg' },
-  { component: <Ladi />, color: 'bg-[#1666DB]', id: 'ladi' },
-]
-
-const ProjectHeader = () => (
-  <div className="flex flex-row justify-between">
-    <h1 className="md:pb-3 xl:pb-5 2xl:pb-10">
-      <a
-        href="#project"
-        className="text-white md:text-2xl xl:text-3xl 2xl:text-4xl font-bold hover:text-primary transition-colors duration-500"
-      >
-        <span className="text-primary">03. </span>Projects
-      </a>
-    </h1>
-  </div>
-)
-
-const ProjectSection: React.FC<{
-  currentIndex: number
-  setCurrentIndex: React.Dispatch<SetStateAction<number>>
-}> = ({ currentIndex, setCurrentIndex }) => {
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const isInViewport = useRef(false)
-  const isLocked = useRef(false)
-  const isTransitioning = useRef(false)
+const ProjectSection = () => {
+  const [selected, setSelected] = useState('All')
+  const [projects, setProjects] = useState(PROJECTS)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px 0px' })
 
   useEffect(() => {
-    const section = sectionRef.current
-    if (!section) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.9) {
-          section.scrollIntoView({ behavior: 'instant' })
-          document.body.style.overflow = 'hidden'
-          isInViewport.current = true
-          isLocked.current = true
-        }
-      },
-      {
-        threshold: [0.9],
-        rootMargin: '0px',
-      },
-    )
-
-    const handleWheel = (e: WheelEvent) => {
-      if (!isInViewport.current || isTransitioning.current) return
-      e.preventDefault()
-      e.stopPropagation()
-
-      isTransitioning.current = true
-      setTimeout(() => {
-        isTransitioning.current = false
-      }, 500)
-
-      const dispatchScrollEvent = () => {
-        const scrollEvent = new Event('scroll')
-        window.dispatchEvent(scrollEvent)
-      }
-
-      if (currentIndex === 0 && e.deltaY < 0) {
-        document.body.style.overflow = ''
-        isInViewport.current = false
-        isLocked.current = false
-        return
-      }
-
-      if (currentIndex === PROJECTS.length - 1 && e.deltaY > 0) {
-        document.body.style.overflow = ''
-        isInViewport.current = false
-        isLocked.current = false
-        return
-      }
-
-      if (e.deltaY > 0 && currentIndex < PROJECTS.length - 1) {
-        setCurrentIndex((prev) => prev + 1)
-        dispatchScrollEvent()
-      } else if (e.deltaY < 0 && currentIndex > 0) {
-        setCurrentIndex((prev) => prev - 1)
-        dispatchScrollEvent()
-      }
+    if (selected === 'All') {
+      setProjects(PROJECTS)
+    } else if (selected === 'Team') {
+      setProjects(PROJECTS.filter((project) => project.team === true))
+    } else if (selected === 'Single') {
+      setProjects(PROJECTS.filter((project) => project.team === false))
     }
-
-    observer.observe(section)
-    window.addEventListener('wheel', handleWheel, {
-      passive: false,
-      capture: true,
-    })
-
-    return () => {
-      observer.disconnect()
-      window.removeEventListener('wheel', handleWheel, { capture: true })
-      document.body.style.overflow = ''
-    }
-  }, [currentIndex, setCurrentIndex])
-
-  useEffect(() => {
-    console.log('projectSection: ', currentIndex)
-  }, [currentIndex])
+  }, [selected])
 
   return (
-    <div
+    <motion.article
+      ref={ref}
       id="project"
-      ref={sectionRef}
-      className={`h-screen ${PROJECTS[currentIndex].color} transition-colors duration-700`}
+      className="h-full transition-colors duration-400 ease-in-out"
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
     >
-      <div className="px-8 sm:px-[4rem] md:px-[4rem] lg:px-[5rem] xl:[7rem] 2xl:px-[15rem]">
-        <section
-          id={PROJECTS[currentIndex].id}
-          className="h-screen py-[50px] sm:py-[12dvh]"
-        >
-          <div className="flex flex-col h-full w-full text-white">
-            {currentIndex === 0 && <ProjectHeader />}
-            <div className="flex-1 relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentIndex}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{
-                    duration: 0.5,
-                    ease: 'easeInOut',
-                  }}
-                  className="absolute inset-0"
+      <div className="lg:hidden text-white">
+        <section className="block px-8 sm:px-[4rem] md:px-[4rem] lg:hidden">
+          <div className="flex justify-between items-center">
+            <SectionTitle title="Projects" />
+            <div className="flex gap-2 rounded-full px-2 py-1 bg-bgGray">
+              {['All', 'Team', 'Single'].map((type) => (
+                <motion.button
+                  key={type}
+                  onClick={() => setSelected(type)}
+                  className={`w-12 h-8 flex items-center justify-center rounded-[75px] text-md transition-colors 
+                  ${selected === type ? 'bg-white text-black font-bold' : 'font-medium'}`}
+                  whileTap={{ scale: 0.9 }}
                 >
-                  {PROJECTS[currentIndex].component}
-                </motion.div>
-              </AnimatePresence>
+                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                </motion.button>
+              ))}
             </div>
           </div>
+          <motion.div
+            className="h-[calc(100%-2rem)] grid grid-cols-1 gap-4 my-4"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            {projects.map((project) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <CustomCard data={project} />
+              </motion.div>
+            ))}
+          </motion.div>
         </section>
       </div>
-    </div>
+      <div className="hidden lg:block">
+        <div className="hidden lg:block px-8 sm:px-[4rem] md:px-[4rem] lg:px-[5rem] xl:px-[7rem] 2xl:px-[15rem]">
+          <section className="min-h-screen py-[50px] sm:py-[12dvh] flex flex-col w-full text-white relative">
+            <div className="flex justify-between items-center">
+              <SectionTitle title="Projects" />
+              <div className="flex gap-4 rounded-full px-2 py-1 bg-bgGray">
+                {['All', 'Team', 'Single'].map((type) => (
+                  <motion.button
+                    key={type}
+                    onClick={() => setSelected(type)}
+                    className={`w-16 h-12 flex items-center justify-center rounded-[75px] text-lg transition-colors 
+                  ${selected === type ? 'bg-white text-black font-bold' : 'font-medium'}`}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+            <motion.div
+              className="h-[calc(100%-2rem)] grid lg:grid-cols-3 xl:grid-cols-4 grid-rows-2 gap-4 my-8"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              {projects.map((project) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <CustomCard data={project} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </section>
+        </div>
+      </div>
+    </motion.article>
   )
 }
 

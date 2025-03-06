@@ -5,18 +5,11 @@ import { TitleLabel, ContentLabel } from '../ui/Lable'
 import useModal from '@/hook/useModal'
 import ImageModal from '../ui/Modal/ImageModal'
 import { useState } from 'react'
-import NotionModal from '../ui/Modal/NotionModal'
 import Link from 'next/link'
 
 const GDG = () => {
   const { isOpen, openModal, closeModal } = useModal()
   const [selectedImage, setSelectedImage] = useState<string>('')
-
-  const {
-    isOpen: isOpenNotion,
-    openModal: openModalNotion,
-    closeModal: closeModalNotion,
-  } = useModal()
 
   return (
     <div className="w-full flex flex-row lg:justify-around h-[80dvh] font-toss">
@@ -26,7 +19,7 @@ const GDG = () => {
             GDG: IT-Camp
           </h1>
         </Link>
-        <ol className="grid grid-cols-2 gap-x-8 gap-y-6 w-full lg:flex lg:flex-row lg:justify-between pt-4">
+        <ol className="grid grid-cols-2 gap-4 w-full lg:flex lg:flex-row lg:justify-between pt-4">
           <li>
             <TitleLabel title="플랫폼" />
             <ContentLabel>웹/앱</ContentLabel>
@@ -136,26 +129,15 @@ const GDG = () => {
               </span>
             </button>
           </Link>
-          {/* 노션 iframe 안될 시 링크 */}
-          {/* <Link
-            className="w-full h-12"
-            href="https://jet-captain-13f.notion.site/17a3b2c548ec8031addcea0cb4537bff?pvs=74"
+          <Link
+            className="w-full"
+            href="https://jet-captain-13f.notion.site/GDG-IT-Camp-14d3b2c548ec80a79563d6b20b7cc1bf"
+            target="_blank"
           >
-            <button className="w-full h-full border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">
+            <button className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">
               자세히 보기
             </button>
-          </Link> */}
-          <button
-            onClick={() => openModalNotion()}
-            className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black"
-          >
-            자세히 보기
-          </button>
-          <NotionModal
-            isOpen={isOpenNotion}
-            onClose={closeModalNotion}
-            notionUrl="/notions/Gdg/GDG-IT-Camp(행사용 서비스) 14d3b2c548ec80a79563d6b20b7cc1bf.html"
-          ></NotionModal>
+          </Link>
         </div>
       </div>
       <div className="m-auto hidden lg:block">

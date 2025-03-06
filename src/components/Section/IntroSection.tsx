@@ -18,13 +18,6 @@ const IntroSection = () => {
   const [isTyping, setIsTyping] = useState(true)
   const [showRestartButton, setShowRestartButton] = useState(false)
 
-  const startTyping = () => {
-    setShowRestartButton(false)
-    setCurrentSentenceIndex(0)
-    setDisplayText('')
-    setIsTyping(true)
-  }
-
   useEffect(() => {
     if (!isTyping) return
 
@@ -66,40 +59,47 @@ const IntroSection = () => {
   }
 
   return (
-    <section className="w-full h-screen flex flex-col items-center justify-center">
-      <h1 className="text-white sm:text-2xl md:text-4xl lg:text-6xl font-bold mb-5 text-center font-toss">
-        {getLinesWithEffect(displayText)}
-      </h1>
-      <button
-        onClick={startTyping}
-        className={`text-[8px] sm:text-sm md:text-lg px-2 py-1 rounded-sm lg:px-6 lg:py-3 bg-zinc-50 text-black hover:bg-primary font-bold lg:rounded-lg hover:bg-primary-dark transition duration-300 animate-blink ${
-          showRestartButton ? 'block' : 'hidden'
-        }`}
-      >
-        다시 보기
-      </button>
-      <a
-        href="#about"
-        className={`${showRestartButton ? 'block' : 'hidden'} absolute bottom-[10vh]`}
-      >
-        <ChevronsDown
-          size={80}
-          className="text-white animate-bounce hidden lg:block"
-        />
-        <ChevronsDown
-          size={25}
-          className="text-white animate-bounce sm:hidden"
-        />
-        <ChevronsDown
-          size={40}
-          className="text-white animate-bounce hidden sm:block md:hidden"
-        />
-        <ChevronsDown
-          size={60}
-          className="text-white animate-bounce hidden md:block lg:hidden"
-        />
-      </a>
-    </section>
+    <div className="px-8 sm:px-[4rem] md:px-[4rem] scrollbar-hide lg:px-[5rem] xl:[7rem] 2xl:px-[15rem]">
+      <section className="w-full h-screen flex flex-col items-center justify-center">
+        <h1 className="text-white sm:text-2xl md:text-4xl lg:text-6xl font-bold mb-5 text-center font-toss">
+          {getLinesWithEffect(displayText)}
+        </h1>
+        <button
+          onClick={() => {
+            setCurrentSentenceIndex(0)
+            setDisplayText('')
+            setIsTyping(true)
+            setShowRestartButton(false)
+          }}
+          className={`text-[8px] sm:text-sm md:text-lg px-2 py-1 rounded-sm lg:px-6 lg:py-3 bg-zinc-50 text-black hover:bg-primary font-bold lg:rounded-lg hover:bg-primary-dark transition duration-300  ${
+            showRestartButton ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          다시 보기
+        </button>
+        <a
+          href="#profile"
+          className={`${showRestartButton ? 'opacity-100' : 'opacity-0'} transition duration-300 absolute bottom-[10vh]`}
+        >
+          <ChevronsDown
+            size={80}
+            className="text-white animate-bounce hidden lg:block"
+          />
+          <ChevronsDown
+            size={25}
+            className="text-white animate-bounce sm:hidden"
+          />
+          <ChevronsDown
+            size={40}
+            className="text-white animate-bounce hidden sm:block md:hidden"
+          />
+          <ChevronsDown
+            size={60}
+            className="text-white animate-bounce hidden md:block lg:hidden"
+          />
+        </a>
+      </section>
+    </div>
   )
 }
 
