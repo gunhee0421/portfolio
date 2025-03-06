@@ -9,6 +9,7 @@ import SkillSection from './Section/SkillSection'
 import { LeftNavigation } from './navigation'
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import MoreSection from './Section/MoreSection'
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -59,6 +60,9 @@ const Main = () => {
         </div>
       </header>
       <main className="overflow-x-hidden scrollbar-hide bg-bgBlack">
+        <div className="fixed right-[4dvw] bottom-0 xl:right-8 2xl:right-20 w-fit">
+          <LeftNavigation />
+        </div>
         <motion.div
           variants={sectionVariants}
           initial="hidden"
@@ -73,10 +77,8 @@ const Main = () => {
         <ProfileSection />
         <AboutSection />
         <SkillSection />
-        <div className="fixed right-[4dvw] bottom-0 xl:right-8 2xl:right-20 w-fit">
-          <LeftNavigation />
-        </div>
         <ProjectSection />
+        <MoreSection />
       </main>
     </div>
   )
