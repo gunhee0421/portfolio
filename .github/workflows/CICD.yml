@@ -84,9 +84,8 @@ jobs:
           script_stop: true
           script: |
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPONAME }}:latest
+            echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" > .env
             sudo docker-compose --env-file .env -f docker-compose-front.yml up -d
-            latest_image_id=$(sudo docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}" | grep "${{ secrets.DOCKERHUB_REPONAME }}:latest" | awk '{print $2}')
-            sudo docker images --format "{{.ID}}" | grep -v "$latest_image_id" | xargs -r sudo docker rmi
 
       - name: Check Deploy Server URL
         uses: jtalk/url-health-check-action@v3
