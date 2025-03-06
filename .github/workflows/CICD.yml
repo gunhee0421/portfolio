@@ -85,7 +85,7 @@ jobs:
           script: |
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPONAME }}:latest
             echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" > .env
-            sudo docker-compose --env-file .env -f docker-compose-front.yml up -d
+            sudo docker-compose --env-file .env up -d
 
       - name: Check Deploy Server URL
         uses: jtalk/url-health-check-action@v3
