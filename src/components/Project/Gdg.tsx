@@ -5,18 +5,11 @@ import { TitleLabel, ContentLabel } from '../ui/Lable'
 import useModal from '@/hook/useModal'
 import ImageModal from '../ui/Modal/ImageModal'
 import { useState } from 'react'
-import NotionModal from '../ui/Modal/NotionModal'
 import Link from 'next/link'
 
 const GDG = () => {
   const { isOpen, openModal, closeModal } = useModal()
   const [selectedImage, setSelectedImage] = useState<string>('')
-
-  const {
-    isOpen: isOpenNotion,
-    openModal: openModalNotion,
-    closeModal: closeModalNotion,
-  } = useModal()
 
   return (
     <div className="w-full flex flex-row lg:justify-around h-[80dvh] font-toss">
@@ -136,17 +129,15 @@ const GDG = () => {
               </span>
             </button>
           </Link>
-          <button
-            onClick={() => openModalNotion()}
-            className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black"
+          <Link
+            className="w-full"
+            href="https://jet-captain-13f.notion.site/GDG-IT-Camp-14d3b2c548ec80a79563d6b20b7cc1bf"
+            target="_blank"
           >
-            자세히 보기
-          </button>
-          <NotionModal
-            isOpen={isOpenNotion}
-            onClose={closeModalNotion}
-            notionUrl="/notions/Gdg/GDG-IT-Camp(행사용 서비스) 14d3b2c548ec80a79563d6b20b7cc1bf.html"
-          ></NotionModal>
+            <button className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">
+              자세히 보기
+            </button>
+          </Link>
         </div>
       </div>
       <div className="m-auto hidden lg:block">
