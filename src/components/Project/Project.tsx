@@ -31,7 +31,7 @@ const PROJECTS = [
     id: 'gdg',
     title: 'GDG',
     description: 'Google Developer Group 기획자 캠프 마켓 서비스',
-    imageUrl: '/images/project/Gdg/logo.gif',
+    imageUrl: '/images/project/gdg/logo.gif',
     tags: ['웹/앱', '플리마켓'],
     component: <GDG />,
     team: true,
