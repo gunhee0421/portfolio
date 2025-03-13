@@ -4,6 +4,7 @@ import Jinlo from './Jinlo'
 import Ladi from './Ladi'
 import TodayClothes from './TodayClothes'
 import TodayScrum from './TodayScrum'
+import Profile from './Profile'
 
 export type CardData = {
   id: string
@@ -17,6 +18,16 @@ export type CardData = {
 }
 
 const PROJECTS = [
+  {
+    color: 'bg-[#ffb326]',
+    id: 'Profile',
+    title: 'Profile',
+    description: '포트폴리오 서비스',
+    tags: ['웹/앱', '반응형'],
+    imageUrl: '/images/project/profile/home.png',
+    component: <Profile />,
+    team: false,
+  },
   {
     color: 'bg-[#00C369]',
     id: 'jinlo',
