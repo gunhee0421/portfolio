@@ -1,40 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 export const LeftNavigation = () => {
-  const [link, setLink] = useState('https://github.com/gunhee0421')
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY
-      if (
-        scrollY >= window.innerHeight * 3 &&
-        scrollY < window.innerHeight * 4
-      ) {
-        setLink('https://github.com/gunhee0421/Jjinro')
-      } else if (
-        scrollY >= window.innerHeight * 4 &&
-        scrollY < window.innerHeight * 5
-      ) {
-        setLink(
-          'https://github.com/GDG-on-Campus-Kangnam-University/GDG-Planner-Camp-Web',
-        )
-      } else if (
-        scrollY >= window.innerHeight * 5 &&
-        scrollY < window.innerHeight * 6
-      ) {
-        setLink('https://github.com/gunhee0421/life-designer-web')
-      } else {
-        setLink('https://github.com/gunhee0421')
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+  const link = 'https://github.com/gunhee0421'
 
   return (
     <div className="flex flex-col gap-12 justify-center items-center">
