@@ -131,7 +131,7 @@ const GDG = () => {
           </Link>
           <Link
             className="w-full"
-            href="https://jet-captain-13f.notion.site/GDG-IT-Camp-14d3b2c548ec80a79563d6b20b7cc1bf"
+            href="https://jet-captain-13f.notion.site/GDG-IT-Camp-1b63b2c548ec8156bddef88205954b21"
             target="_blank"
           >
             <button className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">

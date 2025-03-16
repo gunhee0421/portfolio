@@ -127,7 +127,7 @@ const Ladi = () => {
           </Link>
           <Link
             className="w-full"
-            href="https://jet-captain-13f.notion.site/LifeDesginer-681f62a106e747f7895aa954ce4c0a5b"
+            href="https://jet-captain-13f.notion.site/LifeDesginer-1b63b2c548ec8108ab78d2699f7b6bd0"
             target="_blank"
           >
             <button className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">

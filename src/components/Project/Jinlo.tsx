@@ -128,7 +128,7 @@ const Jinlo = () => {
           </button>
           <Link
             className="w-full"
-            href="https://jet-captain-13f.notion.site/17a3b2c548ec8031addcea0cb4537bff?pvs=74"
+            href="https://jet-captain-13f.notion.site/1b63b2c548ec813ba20ec30b8ce3c739"
             target="_blank"
           >
             <button className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">

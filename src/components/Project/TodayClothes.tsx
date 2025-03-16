@@ -136,7 +136,7 @@ const TodayClothes = () => {
           <Link
             className="w-full"
             href={
-              'https://jet-captain-13f.notion.site/TodayClothes-1473b2c548ec804d9b05f53b1756a189'
+              'https://jet-captain-13f.notion.site/TodayClothes-1b63b2c548ec812d9ae0ed5f7892b0b6'
             }
             target="_blank"
           >
