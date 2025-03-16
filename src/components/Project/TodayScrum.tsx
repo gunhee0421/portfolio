@@ -135,7 +135,7 @@ const TodayScrum = () => {
           <Link
             className="w-full"
             href={
-              'https://jet-captain-13f.notion.site/TodayScrum-14d3b2c548ec80849208c8ce59776181'
+              'https://jet-captain-13f.notion.site/TodayScrum-1b63b2c548ec81dfb178edcf7c7dfdf0'
             }
             target="_blank"
           >

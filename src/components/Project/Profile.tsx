@@ -122,7 +122,7 @@ const Profile = () => {
           </Link>
           <Link
             className="w-full"
-            href="https://jet-captain-13f.notion.site/LifeDesginer-681f62a106e747f7895aa954ce4c0a5b"
+            href="https://jet-captain-13f.notion.site/Profile-1b63b2c548ec8082b1e0e86249d88d81"
             target="_blank"
           >
             <button className="w-full h-12 border-solid border-[1px] border-white transition-colors duration-500 text-white rounded-lg hover:bg-white hover:text-black">
