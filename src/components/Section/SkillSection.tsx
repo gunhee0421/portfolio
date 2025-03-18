@@ -8,12 +8,11 @@ import { motion, useInView } from 'framer-motion'
 const SkillComponent: React.FC<{
   image: string
   title: string
-  percent: number
   className?: string
-}> = ({ image, title, percent, className }) => {
+}> = ({ image, title, className }) => {
   return (
     <li
-      className={`flex w-full flex-col md:flex-row items-center space-x-4 font-notoSans ${className}`}
+      className={`flex w-full flex-col md:flex-row items-center justify-center space-x-4 font-notoSans ${className}`}
     >
       <div className="flex flex-col items-center justify-center">
         <Image
@@ -25,7 +24,7 @@ const SkillComponent: React.FC<{
         />
         <span className="mt-4 font-bold text-center">{title}</span>
       </div>
-      <div
+      {/* <div
         className="flex flex-col w-full pl-4 pr-8 items-center gap-1"
         style={{ marginLeft: '0px' }}
       >
@@ -49,7 +48,7 @@ const SkillComponent: React.FC<{
         <span className="text-lg font-bold text-green-400 shadow-sm">
           {percent}%
         </span>
-      </div>
+      </div> */}
     </li>
   )
 }
@@ -151,46 +150,26 @@ export const SkillSection = () => {
             >
               {index === 0 ? (
                 <div className="w-full h-full pt-4 lg:pt-0 grid grid-cols-3 gap-4">
-                  <SkillComponent image="html" title="HTML" percent={70} />
-                  <SkillComponent image="css" title="CSS" percent={80} />
-                  <SkillComponent image="js" title="JavaScript" percent={90} />
-                  <SkillComponent image="react" title="React" percent={90} />
-                  <SkillComponent image="next" title="Next" percent={80} />
+                  <SkillComponent image="html" title="HTML" />
+                  <SkillComponent image="css" title="CSS" />
+                  <SkillComponent image="js" title="JavaScript" />
+                  <SkillComponent image="react" title="React" />
+                  <SkillComponent image="next" title="Next" />
                   <br />
-                  <SkillComponent
-                    image="styled"
-                    title="Styled-Component"
-                    percent={80}
-                  />
-                  <SkillComponent
-                    image="tailwind"
-                    title="TailWind"
-                    percent={90}
-                  />
+                  <SkillComponent image="styled" title="Styled-Component" />
+                  <SkillComponent image="tailwind" title="TailWind" />
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
-                  <SkillComponent
-                    image="spring"
-                    title="Spring Boot"
-                    percent={60}
-                  />
-                  <SkillComponent image="node" title="Node.js" percent={45} />
-                  <SkillComponent
-                    image="express"
-                    title="Express"
-                    percent={45}
-                  />
-                  <SkillComponent image="aws" title="AWS" percent={70} />
-                  <SkillComponent image="docker" title="Docker" percent={60} />
+                  <SkillComponent image="spring" title="Spring Boot" />
+                  <SkillComponent image="node" title="Node.js" />
+                  <SkillComponent image="express" title="Express" />
+                  <SkillComponent image="aws" title="AWS" />
+                  <SkillComponent image="docker" title="Docker" />
                   <br />
-                  <SkillComponent image="mysql" title="MySQL" percent={70} />
-                  <SkillComponent
-                    image="postgresql"
-                    title="PostgreSQL"
-                    percent={40}
-                  />
-                  <SkillComponent image="prisma" title="Prisma" percent={45} />
+                  <SkillComponent image="mysql" title="MySQL" />
+                  <SkillComponent image="postgresql" title="PostgreSQL" />
+                  <SkillComponent image="prisma" title="Prisma" />
                 </div>
               )}
             </motion.div>
